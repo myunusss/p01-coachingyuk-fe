@@ -22,5 +22,6 @@ export default {
     min-height: 100vh;
     background-color: var(--md-blue-grey-50);
     padding-top: 120px;
+    padding-bottom: 25px;
   }
 </style>
