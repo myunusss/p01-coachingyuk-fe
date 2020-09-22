@@ -1,35 +1,37 @@
 <template>
-  <div class="d-flex justify-content-center">
-    <b-card class="w-50 align-self-center">
-      <b-row class="py-3 text-center justify-content-center divider">
-        <h4>Activity</h4>
-      </b-row>
-      <b-row
-        v-show="!isHasFriends"
-        class="my-3 justify-content-center"
-      >
-        <div class="d-flex flex-column justify-content-center">
-          <h6>Follow friends to see their activity here</h6>
-          <b-button
-            variant="primary"
-            class="align-self-center"
-          >
-            Find Friends to Follow
-          </b-button>
-        </div>
-      </b-row>
-      <b-row
-        v-for="(items, i) of dummyData"
-        class="px-4 py-3 justify-content-center divider"
-        :key="i"
-      >
-        <card-activity
-          :activity="items.activity"
-          :user="items.user"
-        />
-      </b-row>
-    </b-card>
-  </div>
+  <b-container class="main-padding">
+    <div class="d-flex justify-content-center">
+      <b-card class="w-50 align-self-center">
+        <b-row class="py-3 text-center justify-content-center divider">
+          <h4>Activity</h4>
+        </b-row>
+        <b-row
+          v-show="!isHasFriends"
+          class="my-3 justify-content-center"
+        >
+          <div class="d-flex flex-column justify-content-center">
+            <h6>Follow friends to see their activity here</h6>
+            <b-button
+              variant="primary"
+              class="align-self-center"
+            >
+              Find Friends to Follow
+            </b-button>
+          </div>
+        </b-row>
+        <b-row
+          v-for="(items, i) of dummyData"
+          class="px-4 py-3 justify-content-center divider"
+          :key="i"
+        >
+          <card-activity
+            :activity="items.activity"
+            :user="items.user"
+          />
+        </b-row>
+      </b-card>
+    </div>
+  </b-container>
 </template>
 
 <script>

@@ -12,4 +12,9 @@
   .pointer {
     cursor: pointer;
   }
+
+  .main-padding {
+    padding-top: 120px;
+    padding-bottom: 25px;
+  }
 </style>
