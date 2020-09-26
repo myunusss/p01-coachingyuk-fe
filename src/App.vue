@@ -8,6 +8,7 @@
 @import '~material-colors/dist/colors.var';
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
+@import '~vue-multiselect/dist/vue-multiselect.min.css';
 
   .pointer {
     cursor: pointer;

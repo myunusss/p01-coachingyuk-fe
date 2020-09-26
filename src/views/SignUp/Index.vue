@@ -1,0 +1,196 @@
+<template>
+  <div>
+    <top-bar />
+    <main>
+      <div class="vh-100 main-padding bg-accent">
+        <b-container class="d-flex flex-column justify-content-center">
+          <b-row class="w-50 mt-3 align-self-center">
+            <b-col>
+              <b-card class="p-2 bg-card-grey">
+                <v-observer
+                  v-slot="{ valid }"
+                  tag="div"
+                  ref="signUp"
+                >
+                  <b-form @submit.prevent="signUp">
+                    <v-provider
+                      v-slot="{ errors }"
+                      name="First Name"
+                      rules="required"
+                    >
+                      <b-form-group :invalid-feedback="errors[0]">
+                        <b-form-input
+                          v-model="credential.first_name"
+                          placeholder="Nama Depan"
+                          class="p-3"
+                          :state="!errors.length && null"
+                        />
+                      </b-form-group>
+                    </v-provider>
+                    <v-provider
+                      v-slot="{ errors }"
+                      name="Last Name"
+                      rules="required"
+                    >
+                      <b-form-group :invalid-feedback="errors[0]">
+                        <b-form-input
+                          v-model="credential.last_name"
+                          placeholder="Nama Belakang"
+                          class="p-3"
+                          :state="!errors.length && null"
+                        />
+                      </b-form-group>
+                    </v-provider>
+                    <v-provider
+                      v-slot="{ errors }"
+                      name="username"
+                      rules="required"
+                    >
+                      <b-form-group :invalid-feedback="errors[0]">
+                        <b-form-input
+                          v-model="credential.username"
+                          placeholder="Username"
+                          class="p-3"
+                          :state="!errors.length && null"
+                        />
+                      </b-form-group>
+                    </v-provider>
+                    <v-provider
+                      v-slot="{ errors }"
+                      name="email"
+                      rules="required|email"
+                    >
+                      <b-form-group :invalid-feedback="errors[0]">
+                        <b-form-input
+                          v-model="credential.email"
+                          placeholder="Email"
+                          class="p-3"
+                          :state="!errors.length && null"
+                        />
+                      </b-form-group>
+                    </v-provider>
+                    <v-provider
+                      v-slot="{ errors }"
+                      name="password"
+                      rules="required"
+                    >
+                      <b-form-group :invalid-feedback="errors[0]">
+                        <b-form-input
+                          v-model="credential.password"
+                          type="password"
+                          placeholder="Password"
+                          class="p-3"
+                          :state="!errors.length && null"
+                        />
+                      </b-form-group>
+                    </v-provider>
+                    <v-provider
+                      v-slot="{ errors }"
+                      name="timezone"
+                      rules="required"
+                    >
+                      <b-form-group :invalid-feedback="errors[0]">
+                        <v-multiselect
+                          v-model="credential.timezone"
+                          placeholder="timezone"
+                          :options="timezones"
+                          :state="!errors.length && null"
+                        />
+                      </b-form-group>
+                    </v-provider>
+                    <b-form-group>
+                      <b-form-checkbox
+                        v-model="isAgreeToPrivacy"
+                        placeholder="Password"
+                        class="p-3"
+                      >
+                        Saya setuju dengan CoachingYuk Privacy Policy dan Terms Conditions
+                      </b-form-checkbox>
+                    </b-form-group>
+                    <b-button
+                      type="submit"
+                      class="w-100 p-2 button-fill-accent"
+                      :disabled="!valid || !isAgreeToPrivacy"
+                    >
+                      Log In
+                    </b-button>
+                  </b-form>
+                </v-observer>
+              </b-card>
+            </b-col>
+          </b-row>
+          <b-row class="mt-3">
+            <b-col class="d-flex flex-column justify-content-center">
+              <p class="align-self-center text-white">
+                Already signed up? Then just <a
+                  class="text-white pointer"
+                  @click="$router.push('/login')"
+                >Log In</a>
+              </p>
+            </b-col>
+          </b-row>
+        </b-container>
+      </div>
+    </main>
+  </div>
+</template>
+
+<script>
+import moment from 'moment-timezone'
+import TopBar from '@/components/LandingTopBar/LandingTopBar'
+
+import api from '@/api'
+
+export default {
+  components: {
+    TopBar
+  },
+  data() {
+    return {
+      credential: {
+        first_name: null,
+        last_name: null,
+        username: null,
+        email: null,
+        password: null,
+        timezone: null
+      },
+      isAgreeToPrivacy: false,
+      timezones: moment.tz.names()
+    }
+  },
+  methods: {
+    async signUp() {
+      const formValid = this.$refs.signUp.validate()
+      if (!formValid) return false
+      try {
+        const { data } = await api.signUp(this.credential)
+        localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('token', data.token)
+        this.$router.replace('/home')
+      } catch ({ response }) {
+        this.$bvToast.toast(response.data.meta.message, {
+          title: 'Sign Up Failed',
+          variant: 'danger'
+        })
+      }
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+  .bg-accent {
+    background-color: var(--md-deep-purple-800);
+  }
+
+  .bg-card-grey {
+    background-color: var(--md-blue-grey-50);
+  }
+
+  .button-fill-accent {
+    background-color: var(--md-deep-purple-800);
+    border-radius: 25px;
+    color: var(--md-white);
+  }
+</style>
