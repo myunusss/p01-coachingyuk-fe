@@ -48,6 +48,7 @@
                       <b-form-group :invalid-feedback="errors[0]">
                         <b-form-input
                           v-model="credential.password"
+                          type="password"
                           placeholder="Password"
                           class="p-3"
                           :state="!errors.length && null"
