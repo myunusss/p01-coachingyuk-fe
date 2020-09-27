@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Activity from './activity'
 import Dashboard from './dashboard'
 import FindACoach from './findACoach'
+import Profile from './profile'
 
 Vue.use(VueRouter);
 
@@ -24,7 +25,7 @@ const router = new VueRouter({
     {
       path: '/sign-up',
       name: 'SignUp',
-      component: () => import(/* webpackChunkName: 'SignUp' */ '@/views/SignUp/Index')
+      component: () => import(/* webpackChunkName: 'signUp' */ '@/views/SignUp/Index')
     },
     {
       path: '/',
@@ -33,7 +34,8 @@ const router = new VueRouter({
       children: [
         { ...Activity },
         { ...Dashboard },
-        { ...FindACoach }
+        { ...FindACoach },
+        { ...Profile }
       ]
     },
     {

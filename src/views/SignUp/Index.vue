@@ -165,9 +165,9 @@ export default {
       if (!formValid) return false
       try {
         const { data } = await api.signUp(this.credential)
-        localStorage.setItem('user', JSON.stringify(data))
-        localStorage.setItem('token', data.token)
-        this.$router.replace('/home')
+        localStorage.setItem('user', JSON.stringify(data.data))
+        localStorage.setItem('token', data.data.token)
+        this.$router.replace('/')
       } catch ({ response }) {
         this.$bvToast.toast(response.data.meta.message, {
           title: 'Sign Up Failed',

@@ -28,13 +28,23 @@
             >
               <fa-icon icon="bell" />
             </b-button>
-            <b-img
-              rounded="circle"
-              width="50"
-              height="50"
-              class="ml-2"
-              :src="UserDefaultAvatar"
-            />
+            <div class="d-flex flex-row p-2 setting-hover-accent">
+              <b-img
+                rounded="circle"
+                width="50"
+                height="50"
+                class="ml-2"
+                :src="UserDefaultAvatar"
+              />
+              <b-dropdown variant="transparent">
+                <b-dropdown-item @click="$router.push('/profile')">
+                  Profile
+                </b-dropdown-item>
+                <b-dropdown-item @click="logout">
+                  Logout
+                </b-dropdown-item>
+              </b-dropdown>
+            </div>
           </b-col>
         </b-row>
       </b-container>
@@ -74,6 +84,11 @@ export default {
     setDefaultMenu() {
       const defaultMenu = this.menus.find(v => v.id === this.isMenuActive)
       this.$router.push(defaultMenu.route)
+    },
+    logout() {
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
+      this.$router.replace('/landing')
     }
   }
 };
@@ -113,6 +128,14 @@ export default {
     &:hover {
       background-color: var(--md-grey-300);
       color: var(--md-light-blue-300);
+    }
+  }
+
+  .setting-hover-accent {
+    border-radius: 15px;
+
+    &:hover {
+      background-color: var(--md-grey-300);
     }
   }
 </style>
