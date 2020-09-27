@@ -5,6 +5,7 @@ import Activity from './activity'
 import Dashboard from './dashboard'
 import FindACoach from './findACoach'
 import Profile from './profile'
+import Topic from './topic'
 
 Vue.use(VueRouter);
 
@@ -35,7 +36,8 @@ const router = new VueRouter({
         { ...Activity },
         { ...Dashboard },
         { ...FindACoach },
-        { ...Profile }
+        { ...Profile },
+        { ...Topic }
       ]
     },
     {

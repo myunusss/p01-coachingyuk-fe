@@ -5,5 +5,12 @@ export default {
   signUp: params => request.post('/register', params),
   user: {
     update: (id, params) => request.put(`/users/${id}`, params)
+  },
+  category: {
+    list: params => request.get('/categories', { params })
+  },
+  topic: {
+    list: params => request.get('/topics', { params }),
+    join: params => request.post('/topics/join', params)
   }
 }
