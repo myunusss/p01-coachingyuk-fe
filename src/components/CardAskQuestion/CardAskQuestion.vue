@@ -7,6 +7,7 @@
       <b-col>
         <b-form-group label="Ask a question">
           <b-form-input
+            v-model="question"
             placeholder="What is your question?"
             class="p-3"
           />
@@ -16,12 +17,15 @@
             <b-button
               variant="primary"
               class="mr-2"
+              :disabled="!question"
+              @click="$emit('onQuestionAsked', question)"
             >
               Submit
             </b-button>
             <b-button
               variant="danger"
               class="ml-2"
+              @click="isUserAskQuestion = false"
             >
               Cancel
             </b-button>
@@ -38,6 +42,11 @@ export default {
     isUserAskQuestion: {
       type: Boolean,
       default: () => false
+    }
+  },
+  data() {
+    return {
+      question: ''
     }
   }
 };

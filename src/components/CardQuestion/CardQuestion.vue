@@ -2,7 +2,7 @@
   <div>
     <b-row class="mb-2">
       <b-col>
-        <h4>{{ items.question }}</h4>
+        <h4>{{ items.content }}</h4>
       </b-col>
     </b-row>
     <b-row class="mb-2">
@@ -11,7 +11,7 @@
         class="d-flex justify-content-center"
       >
         <b-img
-          :src="items.avatar || UserDefaultAvatar"
+          :src="items.user.avatar || UserDefaultAvatar"
           width="50"
           height="50"
         />
@@ -21,7 +21,7 @@
         class="d-flex justify-content-start"
       >
         <h6 class="font-weight-bold align-self-center">
-          {{ items.name }}
+          {{ items.user.name }}
         </h6>
       </b-col>
     </b-row>
@@ -43,9 +43,12 @@ export default {
     items: {
       type: Object,
       default: () => ({
-        question: '',
-        avatar: null,
-        name: '',
+        content: '',
+        user: {
+          id: null,
+          avatar: null,
+          name: null
+        },
         answers: []
       })
     }
@@ -57,7 +60,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

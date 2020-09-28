@@ -137,7 +137,10 @@
                   Ask
                 </h6>
               </b-row>
-              <card-ask-question :is-user-ask-question="isUserAskQuestion" />
+              <card-ask-question
+                :is-user-ask-question="isUserAskQuestion"
+                @onQuestionAsked="askQuestion"
+              />
               <b-row
                 v-for="(items, i) of questions"
                 :key="i"
@@ -217,6 +220,25 @@ export default {
       const { data } = await api.category.list()
       this.categories = data.data
     },
+    async getQuestions() {
+      const { data } = await api.questions.list({ topic_id: this.topicDetail.id })
+      this.questions = data.data
+    },
+    async askQuestion(value) {
+      try {
+        await api.questions.ask({
+          topic_id: this.topicDetail.id,
+          content: value
+        })
+        this.isUserAskQuestion = false
+        await this.getQuestions()
+      } catch ({ response }) {
+        this.$bvToast.toast(response.data.meta.message, {
+          title: 'Failed To Ask Question',
+          variant: 'danger'
+        })
+      }
+    },
     getWeekIntervalDate() {
       return eachDayOfInterval({
         start: sub(new Date(), { days: 7 }),
@@ -238,6 +260,7 @@ export default {
       }
       this.isTopicDetailShown = true
       this.topicDetail = items
+      this.getQuestions()
     },
     onCategoryPicked(items) {
       this.categoryTitle = items.name

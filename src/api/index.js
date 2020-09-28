@@ -12,5 +12,9 @@ export default {
   topic: {
     list: params => request.get('/topics', { params }),
     join: params => request.post('/topics/join', params)
+  },
+  questions: {
+    list: params => request.get('/questions', { params }),
+    ask: params => request.post('/questions', params)
   }
 }
