@@ -15,6 +15,13 @@ export default {
   },
   questions: {
     list: params => request.get('/questions', { params }),
-    ask: params => request.post('/questions', params)
+    ask: params => request.post('/questions', params),
+    follow: params => request.post('/questions/follow', params)
+  },
+  answer: {
+    list: params => request.get('/answers', { params }),
+    listSlug: (slug, params) => request.get(`/answers/${slug}`, { params }),
+    post: params => request.post('/answers', params),
+    helpful: params => request.post('/answers/toggle-helpful', params)
   }
 }

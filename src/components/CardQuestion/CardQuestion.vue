@@ -11,7 +11,7 @@
         class="d-flex justify-content-center"
       >
         <b-img
-          :src="items.user.avatar || UserDefaultAvatar"
+          :src="items.user ? items.user.avatar : UserDefaultAvatar"
           width="50"
           height="50"
         />
@@ -21,13 +21,19 @@
         class="d-flex justify-content-start"
       >
         <h6 class="font-weight-bold align-self-center">
-          {{ items.user.name }}
+          {{ items.user ? items.user.name : '' }}
         </h6>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <h6 class="text-primary">
+        <h6
+          class="text-primary pointer"
+          @click="$router.push({ name: 'Question', params: {
+            topicName,
+            question: items
+          }})"
+        >
           {{ items.answers.length }} answer
         </h6>
       </b-col>
@@ -40,6 +46,10 @@ import UserDefaultAvatar from '@/assets/undraw_img-avatar.png'
 
 export default {
   props: {
+    topicName: {
+      type: String,
+      default: () => ''
+    },
     items: {
       type: Object,
       default: () => ({

@@ -146,7 +146,10 @@
                 :key="i"
               >
                 <b-col class="py-3 border-bottom-grey">
-                  <CardQuestion :items="items" />
+                  <CardQuestion
+                    :items="items"
+                    :topic-name="topicDetail.name"
+                  />
                 </b-col>
               </b-row>
             </b-card>
