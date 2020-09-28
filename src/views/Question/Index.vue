@@ -135,7 +135,6 @@ export default {
     },
     async fetchAnswers() {
       const { data } = await api.answer.list()
-      console.log('ans', data)
       this.answers = data.data
     }
   }
