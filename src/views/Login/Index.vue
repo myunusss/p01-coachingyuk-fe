@@ -11,7 +11,7 @@
               </h3>
               <p class="align-self-center text-white">
                 You don't have a password? Then please <a
-                  class="text-white pointer"
+                  class="text-orange pointer"
                   @click="$router.push('/sign-up')"
                 >Sign Up</a>
               </p>
@@ -28,13 +28,13 @@
                   <b-form @submit.prevent="login">
                     <v-provider
                       v-slot="{ errors }"
-                      name="username"
+                      name="username/email"
                       rules="required"
                     >
                       <b-form-group :invalid-feedback="errors[0]">
                         <b-form-input
                           v-model="credential.username"
-                          placeholder="Username"
+                          placeholder="Username / Email"
                           class="p-3"
                           :state="!errors.length && null"
                         />
@@ -123,5 +123,9 @@ export default {
     background-color: var(--md-deep-purple-800);
     border-radius: 25px;
     color: var(--md-white);
+  }
+
+  .text-orange {
+    color: var(--md-orange-300);
   }
 </style>

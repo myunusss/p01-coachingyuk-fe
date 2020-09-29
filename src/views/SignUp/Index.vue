@@ -112,7 +112,7 @@
                       class="w-100 p-2 button-fill-accent"
                       :disabled="!valid || !isAgreeToPrivacy"
                     >
-                      Log In
+                      SIGN UP
                     </b-button>
                   </b-form>
                 </v-observer>
@@ -123,7 +123,7 @@
             <b-col class="d-flex flex-column justify-content-center">
               <p class="align-self-center text-white">
                 Already signed up? Then just <a
-                  class="text-white pointer"
+                  class="text-orange pointer"
                   @click="$router.push('/login')"
                 >Log In</a>
               </p>
@@ -192,5 +192,9 @@ export default {
     background-color: var(--md-deep-purple-800);
     border-radius: 25px;
     color: var(--md-white);
+  }
+
+  .text-orange {
+    color: var(--md-orange-300);
   }
 </style>

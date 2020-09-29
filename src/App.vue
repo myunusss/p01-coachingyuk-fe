@@ -5,6 +5,8 @@
 </template>
 
 <style lang="scss">
+$carousel-control-color: var(--md-black);
+
 @import '~material-colors/dist/colors.var';
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';

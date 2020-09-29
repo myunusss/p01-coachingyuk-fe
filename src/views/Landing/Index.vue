@@ -31,7 +31,7 @@
       <bottom-wave class="margin-top-minus" />
       <div class="bg-white">
         <b-container>
-          <b-row class="mb-5">
+          <b-row class="mt-5 mb-5">
             <b-col>
               <b-carousel
                 controls
@@ -41,7 +41,7 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <b-img
-                      :src="require('../../assets/undraw_img-avatar.png')"
+                      :src="require('../../assets/img-dummy-default-category.jpg')"
                       height="450"
                     />
                   </template>
@@ -49,7 +49,7 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <b-img
-                      :src="require('../../assets/undraw_img-avatar.png')"
+                      :src="require('../../assets/img-dummy-carousel-sleep.jpg')"
                       height="450"
                     />
                   </template>
@@ -57,7 +57,7 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <b-img
-                      :src="require('../../assets/undraw_img-avatar.png')"
+                      :src="require('../../assets/img-dummy-carousel-icf.jpg')"
                       height="450"
                     />
                   </template>
@@ -65,7 +65,7 @@
               </b-carousel>
             </b-col>
           </b-row>
-          <b-row>
+          <b-row class="mt-xl">
             <b-col class="d-flex flex-column justify-content-center">
               <b-img
                 width="250"
@@ -106,7 +106,7 @@
               </b-button>
             </b-col>
           </b-row>
-          <b-row class="py-5">
+          <b-row class="mt-xl py-5">
             <b-col>
               <h3>Mengapa Join di Coachingyuk.com</h3>
               <p>Wadah yang mempertemukan Anda dengan para Profesional Coach yang siap membantu mengembangkan potensi diri dan mempercepat pencapaian Anda menuju sukses dalam bisnis, karir, serta kehidupan. Semua kendali anda di tangan anda</p>
@@ -126,7 +126,7 @@
               />
             </b-col>
           </b-row>
-          <b-row>
+          <b-row class="mt-xl">
             <b-col>
               <b-carousel
                 indicators
@@ -292,6 +292,10 @@ export default {
 
   ul li::before {
     color: var(--md-deep-purple-800);
+  }
+
+  .mt-xl {
+    margin-top: 150px;
   }
 
   .margin-top-minus {

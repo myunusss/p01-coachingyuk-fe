@@ -7,7 +7,7 @@
             height="55"
             class="pointer"
             :src="Logo"
-            @click="$router.push('/landing')"
+            @click="onIconClicked"
           />
         </b-col>
         <b-col
@@ -47,6 +47,13 @@ export default {
   data() {
     return {
       Logo
+    }
+  },
+  methods: {
+    onIconClicked() {
+      this.$route.path === '/landing'
+        ? window.location.reload()
+        : this.$router.push('/landing')
     }
   }
 };
