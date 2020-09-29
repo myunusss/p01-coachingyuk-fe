@@ -115,7 +115,10 @@
                 <li>Harga yang terjangkau</li>
                 <li>Bisa dimana saja dan kapan saja</li>
               </ul>
-              <b-button class="px-4 py-2 button-fill-accent">
+              <b-button
+                class="px-4 py-2 button-fill-accent"
+                @click="$router.push('/sign-up')"
+              >
                 DAPATKAN SECARA GRATIS
               </b-button>
             </b-col>
