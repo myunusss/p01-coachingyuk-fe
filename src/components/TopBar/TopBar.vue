@@ -29,13 +29,7 @@
               <fa-icon icon="bell" />
             </b-button>
             <div class="d-flex flex-row p-2 setting-hover-accent">
-              <b-img
-                rounded="circle"
-                width="50"
-                height="50"
-                class="ml-2"
-                :src="UserDefaultAvatar"
-              />
+              <b-avatar :text="`${getNameInitial(user.first_name, user.last_name)}`" />
               <b-dropdown variant="transparent">
                 <b-dropdown-item @click="$router.push('/profile')">
                   Profile
@@ -53,13 +47,13 @@
 </template>
 
 <script>
-import UserDefaultAvatar from '@/assets/undraw_img-avatar.png'
+import { getNameInitial } from '@/utils/avatarHelper'
 
 export default {
   data() {
     return {
-      UserDefaultAvatar,
       isMenuActive: 1,
+      user: JSON.parse(localStorage.getItem('user')),
       menus: [
         { id: 1, name: 'dashboard', route: '/dashboard', isActive: true },
         { id: 2, name: 'activity', route: '/activity', isActive: false },
@@ -71,6 +65,7 @@ export default {
     this.setDefaultMenu()
   },
   methods: {
+    getNameInitial,
     onClickMenu(val) {
       val.isActive = !val.isActive
       this.menus.map(v => {

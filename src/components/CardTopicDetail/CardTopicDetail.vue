@@ -29,7 +29,14 @@
             Weekly Stat
           </p>
         </b-col>
-        <b-col cols="8" />
+        <b-col
+          cols="8"
+          class="d-flex align-items-center"
+        >
+          <b-avatar variant="light">
+            {{ topicDetail.total_check_ins }}
+          </b-avatar>
+        </b-col>
         <b-col
           cols="2"
           class="d-flex justify-content-center"
@@ -45,13 +52,44 @@
       <b-row class="py-3 border-bottom-grey">
         <b-col
           cols="2"
-          class="d-flex justify-content-center"
+          class="d-flex"
         >
           <p class="text-secondary align-self-center">
-            Today
+            {{ topicDetail.total_users }} Today
           </p>
         </b-col>
-        <b-col cols="8" />
+        <b-col
+          cols="8"
+          class="d-flex align-items-center"
+        >
+          <b-avatar-group>
+            <div
+              v-for="(user, i) of avatarGroup"
+              :key="i"
+            >
+              <b-avatar
+                v-if="user.avatar && avatarGroup.length < maxLength"
+                variant="light"
+                :key="i"
+                :src="user.avatar"
+              />
+              <b-avatar
+                v-else-if="user.avatar === null && avatarGroup.length < maxLength"
+                variant="danger"
+                :text="`${getNameInitial(user.first_name, user.last_name)}`"
+              />
+              <b-avatar
+                v-else-if="avatarGroup.length >= maxLength && i < avatarGroup.length - 1"
+                variant="light"
+              >
+                <fa-icon
+                  icon="ellipsis-h"
+                  color="#1e88e5"
+                />
+              </b-avatar>
+            </div>
+          </b-avatar-group>
+        </b-col>
         <b-col
           cols="2"
           class="d-flex justify-content-center"
@@ -69,6 +107,10 @@
 </template>
 
 <script>
+import UserDefaultAvatar from '@/assets/undraw_img-avatar.png'
+
+import { getNameInitial } from '@/utils/avatarHelper'
+
 export default {
   props: {
     topicDetail: {
@@ -76,6 +118,30 @@ export default {
       default: () => ({
         name: ''
       })
+    }
+  },
+  data() {
+    return {
+      UserDefaultAvatar,
+      maxLength: 6,
+      maxIndex: 7,
+      avatarGroup: [],
+      bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`
+    }
+  },
+  mounted() {
+    this.setAvatarGroupLimit()
+  },
+  methods: {
+    getNameInitial,
+    setAvatarGroupLimit() {
+      if (this.topicDetail.joined_users.length > this.maxLength) {
+        for (let i = 0; i < this.maxIndex; i++) {
+          this.avatarGroup.push(this.topicDetail.joined_users[i])
+        }
+      } else {
+        this.avatarGroup = this.topicDetail.joined_users
+      }
     }
   }
 };

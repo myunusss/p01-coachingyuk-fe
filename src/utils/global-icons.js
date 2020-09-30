@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
+  faBan,
   faBell,
   faComments,
   faCheckCircle,
@@ -15,6 +16,7 @@ import {
 import { faComment, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
+  faBan,
   faBell,
   faComment,
   faCheckCircle,

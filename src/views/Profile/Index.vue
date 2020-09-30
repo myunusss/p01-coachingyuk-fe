@@ -1,53 +1,68 @@
 <template>
   <b-container class="main-padding">
-    <b-card class="bg-card-grey">
-      <b-row>
-        <b-col class="d-flex justify-content-end">
-          <b-button
-            class="pointer button-outline-white"
-            @click="$router.push({ name: 'Edit', params: { user } })"
-          >
-            EDIT PROFILE
-          </b-button>
-        </b-col>
-      </b-row>
-      <b-row class="h-100">
-        <b-col class="d-flex flex-column justify-content-center">
-          <b-img
-            :src="UserDefaultAvatar"
-            rounded="circle"
-            width="150"
-            height="150"
-            class="mb-3 align-self-center"
-          />
-          <h3 class="text-white align-self-center">
-            {{ user.first_name }}&nbsp;{{ user.last_name }}
-          </h3>
-        </b-col>
-      </b-row>
+    <b-card
+      overlay
+      class="bg-card-header"
+      :img-src="user.header_image || UserDefaultHeader"
+    >
+      <b-card-body class="h-100 d-flex flex-column">
+        <b-row>
+          <b-col class="d-flex justify-content-end">
+            <b-button
+              class="pointer button-outline-white"
+              @click="$router.push({ name: 'Edit', params: { user } })"
+            >
+              EDIT PROFILE
+            </b-button>
+          </b-col>
+        </b-row>
+        <b-row class="h-100">
+          <b-col class="d-flex flex-column justify-content-center">
+            <b-avatar
+              v-if="user.avatar"
+              size="85px"
+              :src="`${bgUrl}${user.avatar}`"
+            />
+            <b-avatar
+              v-else
+              size="85px"
+              class="align-self-center mb-3"
+              :text="`${getNameInitial(user.first_name, user.last_name)}`"
+            />
+            <h3 class="text-white align-self-center">
+              {{ user.first_name }}&nbsp;{{ user.last_name }}
+            </h3>
+          </b-col>
+        </b-row>
+      </b-card-body>
     </b-card>
   </b-container>
 </template>
 
 <script>
-import UserDefaultAvatar from '@/assets/undraw_img-avatar.png'
+import UserDefaultHeader from '@/assets/img-dummy-profile-header.jpg'
+
+import { getNameInitial } from '@/utils/avatarHelper'
 
 export default {
   data() {
     return {
-      UserDefaultAvatar,
+      UserDefaultHeader,
       user: localStorage.getItem('user')
         ? JSON.parse(localStorage.getItem('user'))
-        : {}
+        : {},
+      bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`
     }
+  },
+  methods: {
+    getNameInitial
   }
 };
 </script>
 
 <style scoped lang="scss">
-  .bg-card-grey {
+  .bg-card-header {
     height: 450px;
-    background-color: var(--md-grey-300);
   }
 
   .button-outline-white {
