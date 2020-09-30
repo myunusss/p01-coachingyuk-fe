@@ -296,11 +296,9 @@ export default {
     },
     async setImages(ev, isAvatar) {
       const targetFile = ev.target.files[0]
-      console.log('--', targetFile)
       const transformedFile = await this.transformFile(targetFile)
       if (isAvatar) {
         this.user.avatar = targetFile
-        console.log('===', this.user.avatar)
         this.avatarFile = transformedFile
       } else {
         this.user.header_image = targetFile
