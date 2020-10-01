@@ -27,5 +27,12 @@ export default {
     listSlug: (slug, params) => request.get(`/answers/${slug}`, { params }),
     post: params => request.post('/answers', params),
     helpful: params => request.post('/answers/toggle-helpful', params)
+  },
+  role: {
+    getById: (id, params) => request.get(`/roles/${id}`, { params })
+  },
+  reply: {
+    list: params => request.get('/replies', { params }),
+    post: params => request.post('/replies', params)
   }
 }

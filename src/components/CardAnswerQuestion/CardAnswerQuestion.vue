@@ -22,7 +22,7 @@
             <b-button
               variant="danger"
               class="ml-2"
-              @click="isUserAnswerQuestion = false"
+              @click="$emit('onAnswerClosed')"
             >
               Cancel
             </b-button>
@@ -35,8 +35,6 @@
 
 <script>
 export default {
-  props: {
-  },
   data() {
     return {
       answer: ''
@@ -44,7 +42,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

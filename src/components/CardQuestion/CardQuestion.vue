@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div
+    class="pointer"
+    @click="$router.push({ name: 'Question', params: {
+      topic,
+      question: items
+    }})"
+  >
     <b-row class="mb-2">
       <b-col>
         <h4>{{ items.content }}</h4>
@@ -32,13 +38,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <h6
-          class="text-primary pointer"
-          @click="$router.push({ name: 'Question', params: {
-            topicName,
-            question: items
-          }})"
-        >
+        <h6 class="text-primary">
           {{ items.answers.length }} answer
         </h6>
       </b-col>
@@ -47,15 +47,13 @@
 </template>
 
 <script>
-import UserDefaultAvatar from '@/assets/undraw_img-avatar.png'
-
 import { getNameInitial } from '@/utils/avatarHelper'
 
 export default {
   props: {
-    topicName: {
-      type: String,
-      default: () => ''
+    topic: {
+      type: Object,
+      default: () => {}
     },
     items: {
       type: Object,
@@ -72,7 +70,6 @@ export default {
   },
   data() {
     return {
-      UserDefaultAvatar,
       bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`
     }
   },

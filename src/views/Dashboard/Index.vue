@@ -148,7 +148,7 @@
                 <b-col class="py-3 border-bottom-grey">
                   <CardQuestion
                     :items="items"
-                    :topic-name="topicDetail.name"
+                    :topic="topicDetail"
                   />
                 </b-col>
               </b-row>

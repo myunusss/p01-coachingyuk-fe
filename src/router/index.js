@@ -7,6 +7,7 @@ import FindACoach from './findACoach'
 import Profile from './profile'
 import Topic from './topic'
 import Question from './question'
+import Comment from './comment'
 
 Vue.use(VueRouter);
 
@@ -39,7 +40,8 @@ const router = new VueRouter({
         { ...FindACoach },
         { ...Profile },
         { ...Topic },
-        { ...Question }
+        { ...Question },
+        { ...Comment }
       ]
     },
     {

@@ -13,7 +13,7 @@ import {
   faPlus,
   faSearch
 } from '@fortawesome/free-solid-svg-icons'
-import { faComment, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { faComment, faThumbsUp, faStar } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
   faBan,
@@ -27,7 +27,8 @@ library.add(
   faPhone,
   faPlus,
   faSearch,
-  faThumbsUp
+  faThumbsUp,
+  faStar
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)
