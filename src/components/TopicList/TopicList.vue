@@ -4,7 +4,7 @@
       <b-row class="mb-3">
         <fa-icon
           icon="chevron-left"
-          class="pointer"
+          class="align-self-center pointer"
           color="#039be5"
           @click="$emit('onClose')"
         />
@@ -21,6 +21,21 @@
         >
           <b-col>
             <h2>{{ items.name }}</h2>
+            <b-row>
+              <b-col class="d-flex flex-row">
+                <p class="m-0 mr-2 text-primary">
+                  {{ numeral(items.total_users).format('0a') }} joined
+                </p>
+                &bull;
+                <p class="m-0 mx-2 text-primary">
+                  {{ numeral(items.total_answers).format('0a') }} answers
+                </p>
+                &bull;
+                <p class="m-0 ml-2 text-primary">
+                  {{ numeral(items.total_coach_users).format('0a') }} coaches
+                </p>
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
       </div>
@@ -38,6 +53,8 @@
 </template>
 
 <script>
+import numeral from 'numeral'
+
 export default {
   props: {
     categoryTitle: {
@@ -48,6 +65,9 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+  methods: {
+    numeral
   }
 };
 </script>

@@ -68,22 +68,22 @@
         >
           <b-avatar-group>
             <div
-              v-for="(user, i) of avatarGroup"
+              v-for="(user, i) of avatarGroupLimit"
               :key="i"
             >
               <b-avatar
-                v-if="user.avatar && avatarGroup.length < maxLength"
+                v-if="user.avatar && avatarGroupLimit.length < maxLength"
                 variant="light"
                 :key="i"
                 :src="`${bgUrl}${user.avatar}`"
               />
               <b-avatar
-                v-else-if="user.avatar === null && avatarGroup.length < maxLength"
+                v-else-if="user.avatar === null && avatarGroupLimit.length < maxLength"
                 variant="danger"
                 :text="`${getNameInitial(user.first_name, user.last_name)}`"
               />
               <b-avatar
-                v-else-if="avatarGroup.length >= maxLength && i < avatarGroup.length - 1"
+                v-else-if="avatarGroupLimit.length >= maxLength && i < avatarGroupLimit.length - 1"
                 variant="light"
               >
                 <fa-icon
@@ -133,29 +133,27 @@ export default {
       UserDefaultAvatar,
       maxLength: 6,
       maxIndex: 7,
-      avatarGroup: [],
       bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`
     }
   },
   computed: {
     hasUserCheckedIn() {
       return this.topicDetail.check_in_users.find(v => v.id === this.userId)
-    }
-  },
-  mounted() {
-    this.setAvatarGroupLimit()
-  },
-  methods: {
-    getNameInitial,
-    setAvatarGroupLimit() {
+    },
+    avatarGroupLimit() {
+      const tempArr = []
       if (this.topicDetail.joined_users.length > this.maxLength) {
         for (let i = 0; i < this.maxIndex; i++) {
-          this.avatarGroup.push(this.topicDetail.joined_users[i])
+          tempArr.push(this.topicDetail.joined_users[i])
         }
+        return tempArr
       } else {
-        this.avatarGroup = this.topicDetail.joined_users
+        return this.topicDetail.joined_users
       }
     }
+  },
+  methods: {
+    getNameInitial
   }
 };
 </script>

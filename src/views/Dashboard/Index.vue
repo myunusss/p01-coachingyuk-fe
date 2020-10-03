@@ -102,6 +102,12 @@
           </b-card>
         </b-col>
         <b-col>
+          <!--
+   ___   _ _____ ___ ___  ___  ___ ___ ___ ___
+  / __| /_\_   _| __/ __|/ _ \| _ \_ _| __/ __|
+ | (__ / _ \| | | _| (_ | (_) |   /| || _|\__ \
+  \___/_/ \_\_| |___\___|\___/|_|_\___|___|___/
+          -->
           <div v-if="isCategoriesShown">
             <b-input-group class="mb-3">
               <b-form-input placeholder="Search or Find Goal" />
@@ -116,7 +122,12 @@
               @onCategoryPicked="onCategoryPicked"
             />
           </div>
-
+          <!--
+  _____ ___  ___ ___ ___
+ |_   _/ _ \| _ \_ _/ __|
+   | || (_) |  _/| | (__
+   |_| \___/|_| |___\___|
+          -->
           <div v-else-if="isTopicShown">
             <topic-list
               :category-title="categoryTitle"
@@ -124,7 +135,12 @@
               @onClose="onTopicClosed"
             />
           </div>
-
+          <!--
+  _____ ___  ___ ___ ___   ___  ___ _____ _   ___ _
+ |_   _/ _ \| _ \_ _/ __| |   \| __|_   _/_\ |_ _| |
+   | || (_) |  _/| | (__  | |) | _|  | |/ _ \ | || |__
+   |_| \___/|_| |___\___| |___/|___| |_/_/ \_\___|____|
+          -->
           <div v-else-if="isTopicDetailShown">
             <card-topic-detail
               :user-id="user.id"
@@ -143,6 +159,12 @@
                   Ask
                 </h6>
               </b-row>
+              <!--
+    _   ___ _  __   ___  _   _ ___ ___ _____ ___ ___  _  _
+   /_\ / __| |/ /  / _ \| | | | __/ __|_   _|_ _/ _ \| \| |
+  / _ \\__ \ ' <  | (_) | |_| | _|\__ \ | |  | | (_) | .` |
+ /_/ \_\___/_|\_\  \__\_\\___/|___|___/ |_| |___\___/|_|\_|
+              -->
               <card-ask-question
                 :is-user-ask-question="isUserAskQuestion"
                 @onQuestionAsked="askQuestion"
@@ -152,6 +174,12 @@
                 :key="i"
               >
                 <b-col class="py-3 border-bottom-grey">
+                  <!--
+   ___  _   _ ___ ___ _____ ___ ___  _  _
+  / _ \| | | | __/ __|_   _|_ _/ _ \| \| |
+ | (_) | |_| | _|\__ \ | |  | | (_) | .` |
+  \__\_\\___/|___|___/ |_| |___\___/|_|\_|
+                  -->
                   <CardQuestion
                     :items="items"
                     :topic="topicDetail"
