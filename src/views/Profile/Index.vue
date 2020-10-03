@@ -209,7 +209,6 @@ export default {
     getNameInitial,
     async getDetailUser() {
       const { data } = await api.user.detail(this.userId)
-      console.log('user', data)
       this.user = data.data
     }
   }
