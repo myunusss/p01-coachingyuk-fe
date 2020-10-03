@@ -36,7 +36,7 @@
                 >
                   <b-form-file
                     plain
-                    v-model="user.avatar"
+                    v-model="avatarForm"
                     accept=".jpeg, .jpg, .png"
                     :state="!errors.length && null"
                     @change="(v) => setImages(v, true)"
@@ -80,10 +80,10 @@
                 >
                   <b-form-file
                     plain
-                    v-model="user.header_image"
+                    v-model="headerForm"
                     accept=".jpeg, .jpg, .png"
                     :state="!errors.length && null"
-                    @change="setImages"
+                    @change="(v) => setImages(v, false)"
                   />
                 </b-form-group>
               </v-provider>
@@ -250,8 +250,10 @@ export default {
   data() {
     return {
       timezones: moment.tz.names(),
-      avatarFile: this.user.avatar,
-      headerFile: this.user.header_image
+      avatarForm: null,
+      headerForm: null,
+      avatarFile: `${process.env.VUE_APP_BACKGROUND_URL}/${this.user.avatar}`,
+      headerFile: `${process.env.VUE_APP_BACKGROUND_URL}/${this.user.header_image}`
     }
   },
   methods: {
@@ -291,8 +293,8 @@ export default {
       profileForm.append('email', this.user.email)
       profileForm.append('password', this.user.password)
       profileForm.append('bio', this.user.bio)
-      profileForm.append('avatar', this.user.avatar)
-      profileForm.append('header_image', this.user.header_image)
+      profileForm.append('avatar', this.avatarForm)
+      profileForm.append('header_image', this.headerForm)
       return profileForm
     },
     async setImages(ev, isAvatar) {
@@ -300,9 +302,11 @@ export default {
       const transformedFile = await this.transformFile(targetFile)
       if (isAvatar) {
         this.user.avatar = targetFile
+        this.avatarForm = targetFile
         this.avatarFile = transformedFile
       } else {
         this.user.header_image = targetFile
+        this.headerForm = targetFile
         this.headerFile = transformedFile
       }
     }

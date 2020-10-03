@@ -4,6 +4,7 @@ export default {
   login: params => request.post('/login', params),
   signUp: params => request.post('/register', params),
   user: {
+    detail: (id, params) => request.get(`/users/${id}`, { params }),
     update: (id, params) => request.post(`/users/${id}`, params, {
       headers: {
         'Content-Type': 'multipart/form-data'
