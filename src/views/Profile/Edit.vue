@@ -284,6 +284,7 @@ export default {
     },
     setProfileForm() {
       const profileForm = new FormData()
+      profileForm.append('_method', 'PUT')
       profileForm.append('first_name', this.user.first_name)
       profileForm.append('last_name', this.user.last_name)
       profileForm.append('username', this.user.username)

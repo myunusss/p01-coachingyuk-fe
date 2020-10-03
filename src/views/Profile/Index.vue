@@ -21,6 +21,7 @@
             <b-avatar
               v-if="user.avatar"
               size="85px"
+              class="align-self-center mb-3"
               :src="`${bgUrl}${user.avatar}`"
             />
             <b-avatar

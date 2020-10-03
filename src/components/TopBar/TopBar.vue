@@ -29,7 +29,14 @@
               <fa-icon icon="bell" />
             </b-button>
             <div class="d-flex flex-row p-2 setting-hover-accent">
-              <b-avatar :text="`${getNameInitial(user.first_name, user.last_name)}`" />
+              <b-avatar
+                v-if="user.avatar"
+                :src="`${bgUrl}${user.avatar}`"
+              />
+              <b-avatar
+                v-else
+                :text="`${getNameInitial(user.first_name, user.last_name)}`"
+              />
               <b-dropdown variant="transparent">
                 <b-dropdown-item @click="$router.push('/profile')">
                   Profile
@@ -54,6 +61,7 @@ export default {
     return {
       isMenuActive: 1,
       user: JSON.parse(localStorage.getItem('user')),
+      bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`,
       menus: [
         { id: 1, name: 'dashboard', route: '/dashboard', isActive: true },
         { id: 2, name: 'activity', route: '/activity', isActive: false },
