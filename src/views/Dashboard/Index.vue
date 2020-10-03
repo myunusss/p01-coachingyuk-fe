@@ -77,7 +77,9 @@
             <b-row
               v-else
               v-for="(items, i) of userTopics"
-              class="border-bottom-grey"
+              :class="[hasUserCheckedIn(items)
+                ? 'border-bottom-grey post-check-in-bg'
+                : 'border-bottom-grey pre-check-in-bg']"
               :key="i"
               @click="getTopicDetail(items)"
             >
@@ -89,10 +91,10 @@
                   <fa-icon
                     icon="check-circle"
                     class="mr-2"
-                    color="#9e9e9e"
+                    :color="[hasUserCheckedIn(items) ? '#ffffff' : '#9e9e9e']"
                   />
                   <h6 class="m-0">
-                    0
+                    {{ items.total_check_ins }}
                   </h6>
                 </b-row>
               </b-col>
@@ -124,7 +126,11 @@
           </div>
 
           <div v-else-if="isTopicDetailShown">
-            <card-topic-detail :topic-detail="topicDetail" />
+            <card-topic-detail
+              :user-id="user.id"
+              :topic-detail="topicDetail"
+              @onCheckIn="checkInTopic"
+            />
             <b-card class="p-3 mt-5">
               <b-row class="d-flex flex-row pb-3 border-bottom-grey">
                 <h3 class="align-self-center mx-auto">
@@ -242,6 +248,21 @@ export default {
         })
       }
     },
+    async checkInTopic() {
+      try {
+        const { data } = await api.topic.checkIn({ topic_id: this.topicDetail.id })
+        this.$bvToast.toast(data.meta.message, {
+          title: 'Check In Success',
+          variant: 'success'
+        })
+        await this.getListOfUserTopics()
+      } catch ({ response }) {
+        this.$bvToast.toast(response.data.meta.message, {
+          title: 'Check In Failed',
+          variant: 'danger'
+        })
+      }
+    },
     getWeekIntervalDate() {
       return eachDayOfInterval({
         start: sub(new Date(), { days: 7 }),
@@ -274,6 +295,9 @@ export default {
     onTopicClosed() {
       this.isTopicShown = false
       this.isCategoriesShown = true
+    },
+    hasUserCheckedIn(item) {
+      return item.check_in_users.find(v => v.id === this.user.id)
     }
   }
 }
@@ -297,5 +321,14 @@ export default {
 
   .border-bottom-grey {
     border-bottom: solid 1px var(--md-grey-300);
+  }
+
+  .pre-check-in-bg {
+    background-color: var(--md-white);
+  }
+
+  .post-check-in-bg {
+    background-color: var(--md-green-400);
+    color: var(--md-white);
   }
 </style>

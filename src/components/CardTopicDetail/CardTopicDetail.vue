@@ -15,8 +15,9 @@
           <fa-icon
             icon="check-circle"
             size="3x"
-            color="#9e9e9e"
-            class="align-self-center"
+            class="align-self-center pointer"
+            :color="hasUserCheckedIn ? '#43a047' : '#9e9e9e'"
+            @click="$emit('onCheckIn')"
           />
         </b-col>
       </b-row>
@@ -118,6 +119,10 @@ export default {
       default: () => ({
         name: ''
       })
+    },
+    userId: {
+      type: Number,
+      default: () => null
     }
   },
   data() {
@@ -127,6 +132,11 @@ export default {
       maxIndex: 7,
       avatarGroup: [],
       bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`
+    }
+  },
+  computed: {
+    hasUserCheckedIn() {
+      return this.topicDetail.check_in_users.find(v => v.id === this.userId)
     }
   },
   mounted() {
