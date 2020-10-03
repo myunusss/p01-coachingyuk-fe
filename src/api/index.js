@@ -16,6 +16,7 @@ export default {
   },
   topic: {
     list: params => request.get('/topics', { params }),
+    listSlug: (slug, params) => request.get(`/topics/${slug}`, { params }),
     join: params => request.post('/topics/join', params),
     checkIn: params => request.post('/topics/check-in', params)
   },

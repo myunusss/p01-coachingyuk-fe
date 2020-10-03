@@ -2,7 +2,10 @@
   <div>
     <b-card class="p-3">
       <b-row class="d-flex flex-row pb-3 border-bottom-grey">
-        <h3 class="align-self-center mx-auto">
+        <h3
+          class="align-self-center mx-auto pointer"
+          @click="$router.push({ name: 'Topic', params: { topic: topicDetail } })"
+        >
           {{ topicDetail.name }}
         </h3>
         <fa-icon
