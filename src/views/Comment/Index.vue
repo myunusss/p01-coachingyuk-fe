@@ -233,7 +233,9 @@ export default {
       this.role = data.data
     },
     async fetchReplies() {
+      console.log('ans', this.answer)
       const { data } = await api.reply.list({ answer_id: this.answer.id })
+      console.log('reply', data)
       this.replies = data.data
     },
     async replyAnswer() {

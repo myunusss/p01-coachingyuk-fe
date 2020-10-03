@@ -19,6 +19,7 @@
     "date-fns": "^2.16.1",
     "material-colors": "^1.2.6",
     "moment-timezone": "^0.5.31",
+    "numeral": "^2.0.6",
     "vee-validate": "^3.4.0",
     "vue": "^2.6.11",
     "vue-multiselect": "^2.1.6",
