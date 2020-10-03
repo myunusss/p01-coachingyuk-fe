@@ -71,7 +71,7 @@
                 v-if="user.avatar && avatarGroup.length < maxLength"
                 variant="light"
                 :key="i"
-                :src="user.avatar"
+                :src="`${bgUrl}${user.avatar}`"
               />
               <b-avatar
                 v-else-if="user.avatar === null && avatarGroup.length < maxLength"

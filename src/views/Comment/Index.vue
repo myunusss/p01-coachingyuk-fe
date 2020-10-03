@@ -170,6 +170,10 @@
           <b-button
             variant="outline-primary"
             class="w-100"
+            @click="$router.push({ name: 'Question', params: {
+              topic,
+              question
+            }})"
           >
             View All Answers
           </b-button>
@@ -240,6 +244,8 @@ export default {
           variant: 'success'
         })
         await this.fetchReplies()
+        this.reply = ''
+        this.$refs.reply.reset()
       } catch ({ response }) {
         this.$bvToast.toast(response.data.meta.message, {
           title: 'Failed to Add Comment',

@@ -19,7 +19,7 @@
         <b-avatar
           v-if="items.user.avatar"
           variant="light"
-          :src="items.user.avatar"
+          :src="`${bgUrl}${items.user.avatar}`"
         />
         <b-avatar
           v-else

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container class="mx-5 my-3 border-left-grey">
     <b-row>
       <b-col class="d-flex flex-row">
         <b-avatar
@@ -10,12 +10,24 @@
           v-else
           :text="getNameInitial(reply.user.first_name, reply.user.last_name)"
         />
+        <p class="m-0 ml-2 align-self-center">
+          {{ `${reply.user.first_name} ${reply.user.last_name}` }}
+        </p>
       </b-col>
-      <p class="m-0 ml-2 align-items-center">
-        {{ `${reply.user.first_name} ${reply.user.last_name}` }}
-      </p>
+      <b-col class="d-flex flex-column justify-content-center">
+        <p class="m-0 align-self-end text-secondary">
+          {{ formatDistanceToNow(new Date(reply.updated_at)) }}
+        </p>
+      </b-col>
     </b-row>
-  </div>
+    <b-row class="mt-3">
+      <b-col>
+        <b-container>
+          <p>{{ reply.content }}</p>
+        </b-container>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -39,6 +51,8 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .border-left-grey {
+    border-left: solid 1.5px var(--md-grey-300);
+  }
 </style>
