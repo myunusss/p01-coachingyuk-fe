@@ -145,7 +145,13 @@
             <card-topic-detail
               :user-id="user.id"
               :topic-detail="topicDetail"
+              :edit-activity="editActivity"
+              :activity.sync="activity"
+              :is-note-focused.sync="isNoteFocused"
               @onCheckIn="checkInTopic"
+              @onNoteFocus="isNoteFocused = true"
+              @onSubmit="editActivity"
+              @onCancel="onNoteCancel"
             />
             <b-card class="p-3 mt-5">
               <b-row class="d-flex flex-row pb-3 border-bottom-grey">
@@ -207,12 +213,14 @@
 </template>
 
 <script>
+import numeral from 'numeral'
+import { eachDayOfInterval, format, isYesterday, isToday, sub } from 'date-fns'
+
 import CategoryList from '@/components/CategoryList/CategoryList'
 import TopicList from '@/components/TopicList/TopicList'
 import CardTopicDetail from '@/components/CardTopicDetail/CardTopicDetail'
 import CardQuestion from '@/components/CardQuestion/CardQuestion'
 import CardAskQuestion from '@/components/CardAskQuestion/CardAskQuestion'
-import { eachDayOfInterval, format, isYesterday, isToday, sub } from 'date-fns'
 
 import api from '@/api'
 
@@ -233,13 +241,20 @@ export default {
       isTopicShown: false,
       isTopicDetailShown: false,
       isUserAskQuestion: false,
+      isNoteFocused: false,
       dashboardDate: new Date(),
       userTopics: [],
       categories: [],
       categoryTitle: null,
       topics: [],
       topicDetail: {},
-      questions: []
+      questions: [],
+      activity: {
+        id: null,
+        topic_id: null,
+        content: null,
+        note: null
+      }
     }
   },
   mounted() {
@@ -284,9 +299,49 @@ export default {
           variant: 'success'
         })
         await this.getListOfUserTopics()
+        await this.postActivity()
       } catch ({ response }) {
         this.$bvToast.toast(response.data.meta.message, {
           title: 'Check In Failed',
+          variant: 'danger'
+        })
+      }
+    },
+    async getActivityOnTopic() {
+      const { data } = await api.activity.list({ topic_id: this.topicDetail.id })
+      if (data.data.length) {
+        this.activity = data.data[0]
+        return
+      }
+      this.activity = {
+        id: null,
+        topic_id: this.topicDetail.id,
+        content: null,
+        note: null
+      }
+    },
+    async postActivity() {
+      const tempTopic = this.userTopics.find(v => v.id === this.topicDetail.id)
+      this.activity.topic_id = this.topicDetail.id
+      this.activity.content = `For the ${numeral(tempTopic.total_check_ins).format('0o')} time`
+      await api.activity.post(this.activity)
+    },
+    async editActivity() {
+      try {
+        const { data } = await api.activity.edit(this.activity.id, {
+          topic_id: this.activity.topic_id,
+          content: this.activity.content,
+          note: this.activity.note
+        })
+        this.isNoteFocused = false
+        this.$bvToast.toast(data.meta.message, {
+          title: 'Edit a Note Success',
+          variant: 'success'
+        })
+      } catch ({ response }) {
+        this.isNoteFocused = false
+        this.$bvToast.toast(response.data.meta.message, {
+          title: 'Edit a Note Failed',
           variant: 'danger'
         })
       }
@@ -313,6 +368,7 @@ export default {
       this.isTopicDetailShown = true
       this.topicDetail = items
       this.getQuestions()
+      this.getActivityOnTopic()
     },
     onCategoryPicked(items) {
       this.categoryTitle = items.name
@@ -326,6 +382,9 @@ export default {
     },
     hasUserCheckedIn(item) {
       return item.check_in_users.find(v => v.id === this.user.id)
+    },
+    onNoteCancel() {
+      this.isNoteFocused = false
     }
   }
 }

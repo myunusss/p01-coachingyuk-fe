@@ -21,6 +21,16 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: 'landing' */ '@/views/Landing/Index')
     },
     {
+      path: '/terms-and-conditions',
+      name: 'TermsAndConditions',
+      component: () => import(/* webpackChunkName: 'terms-and-conditions' */ '@/views/TermsCondition/Index')
+    },
+    {
+      path: '/privacy-policy',
+      name: 'PrivacyPolicy',
+      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/views/PrivacyPolicy/Index')
+    },
+    {
       path: '/login',
       name: 'Login',
       component: () => import(/* webpackChunkName: 'login' */ '@/views/Login/Index')
@@ -53,7 +63,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.path !== '/landing' && !localStorage.getItem('user')) {
-    if (to.path === '/login' || to.path === '/sign-up') {
+    if (to.path === '/login' || to.path === '/sign-up' || to.path === '/terms-and-conditions'
+      || to.path === '/privacy-policy') {
       return next()
     }
     next('/landing')

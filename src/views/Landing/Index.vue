@@ -234,10 +234,16 @@
                 <p class="text-white">
                   FAQ
                 </p>
-                <p class="text-white">
+                <p
+                  class="text-white pointer"
+                  @click="$router.push('/terms-and-conditions')"
+                >
                   Terms & Conditions
                 </p>
-                <p class="text-white">
+                <p
+                  class="text-white pointer"
+                  @click="$router.push('/privacy-policy')"
+                >
                   Privacy Policy
                 </p>
               </b-col>

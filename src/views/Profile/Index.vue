@@ -238,11 +238,12 @@ ___ _  _ ___ ___ _  __  ___ _  _
                   <h5>Activity</h5>
                 </b-col>
               </b-row>
-              <div v-if="user.activities && user.activities.length">
+              <div v-if="activities.length">
                 <card-check-in
-                  v-for="(item, i) of user.activities"
-                  :activity="item"
+                  v-for="(item, i) of activities"
                   :key="i"
+                  :activity="item"
+                  :post-comment="postComment"
                 />
               </div>
               <b-row v-else>
@@ -389,6 +390,7 @@ export default {
         : null,
       user: {},
       topics: [],
+      activities: [],
       bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`,
       activeMenu: 'checkIn'
     }
@@ -404,11 +406,20 @@ export default {
       this.user = data.data
 
       await this.getTopic()
+      await this.getActivity()
     },
     async getTopic() {
       const { data } = await api.topic.list({ user_id: this.user.id })
 
       this.topics = data.data
+    },
+    async getActivity() {
+      const { data } = await api.activity.list({ user_id: this.user.id })
+      this.activities = data.data
+    },
+    async postComment(value, activityId) {
+      await api.comment.post({ activity_id: activityId, content: value })
+      await this.getActivity()
     }
   }
 };

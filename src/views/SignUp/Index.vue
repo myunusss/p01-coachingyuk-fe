@@ -104,7 +104,18 @@
                         placeholder="Password"
                         class="p-3"
                       >
-                        Saya setuju dengan CoachingYuk Privacy Policy dan Terms Conditions
+                        <p class="m-0">
+                          Saya setuju dengan CoachingYuk
+                          <span
+                            class="text-underline pointer"
+                            @click="$router.push('/privacy-policy')"
+                          >Privacy Policy</span>
+                          dan
+                          <span
+                            class="text-underline pointer"
+                            @click="$router.push('/terms-and-conditions')"
+                          >Terms Conditions</span>
+                        </p>
                       </b-form-checkbox>
                     </b-form-group>
                     <b-button
@@ -153,7 +164,7 @@ export default {
         username: null,
         email: null,
         password: null,
-        timezone: null
+        timezone: 'Asia/Jakarta'
       },
       isAgreeToPrivacy: false,
       timezones: moment.tz.names()
@@ -196,5 +207,9 @@ export default {
 
   .text-orange {
     color: var(--md-orange-300);
+  }
+
+  .text-underline {
+    text-decoration: underline;
   }
 </style>

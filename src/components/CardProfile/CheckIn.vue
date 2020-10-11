@@ -18,7 +18,7 @@
         </p>
         <b-col class="d-flex flex-column justify-content-center">
           <small class="text-secondary align-self-end">
-            {{ formatDistanceToNow(new Date(activity.user.updated_at)) }}
+            {{ formatDistanceToNow(new Date(activity.updated_at)) }}
           </small>
         </b-col>
       </b-col>
@@ -52,15 +52,18 @@
       class="mt-3"
     >
       <b-col>
-        <comment @onCancel="isCommentShown = false" />
+        <comment
+          @onSubmit="v => postComment(v, activity.id)"
+          @onCancel="isCommentShown = false"
+        />
       </b-col>
     </b-row>
     <div
-      v-if="activity.comments.length"
+      v-if="activity.activity_replies.length"
       class="mt-3 border-top-blue"
     >
       <div
-        v-for="(item, i) of activity.comments"
+        v-for="(item, i) of activity.activity_replies"
         class="mt-3"
         :key="i"
       >
@@ -120,25 +123,28 @@ export default {
     Comment
   },
   props: {
-    isCommentShown: {
-      type: Boolean,
-      default: () => false
-    },
     activity: {
       type: Object,
       default: () => ({
-        content: 'You are being a bitch',
+        content: null,
+        note: null,
         user: {
           avatar: null,
-          first_name: 'Test',
-          last_name: 'Test',
-          updated_at: '2020-08-01T14:50:00'
-        }
+          first_name: null,
+          last_name: null,
+          updated_at: null
+        },
+        activity_replies: []
       })
+    },
+    postComment: {
+      type: Function,
+      default: () => {}
     }
   },
   data() {
     return {
+      isCommentShown: false,
       bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`
     }
   },

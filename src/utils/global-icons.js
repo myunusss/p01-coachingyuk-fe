@@ -14,7 +14,8 @@ import {
   faFire,
   faPhone,
   faPlus,
-  faSearch
+  faSearch,
+  faSquare
 } from '@fortawesome/free-solid-svg-icons'
 import { faComment, faThumbsUp, faStar } from '@fortawesome/free-regular-svg-icons'
 
@@ -34,7 +35,8 @@ library.add(
   faPlus,
   faSearch,
   faThumbsUp,
-  faStar
+  faStar,
+  faSquare
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

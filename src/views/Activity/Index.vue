@@ -20,13 +20,14 @@
           </div>
         </b-row>
         <b-row
-          v-for="(items, i) of dummyData"
+          v-for="(items, i) of activities"
           class="px-4 py-3 justify-content-center divider"
           :key="i"
         >
           <card-activity
-            :activity="items.activity"
-            :user="items.user"
+            :activity="items"
+            :post-comment="postComment"
+            @onLikeActivity="toggleLike"
           />
         </b-row>
       </b-card>
@@ -37,6 +38,8 @@
 <script>
 import CardActivity from '@/components/CardActivity/CardActivity'
 
+import api from '@/api'
+
 export default {
   components: {
     CardActivity
@@ -44,13 +47,34 @@ export default {
   data() {
     return {
       isHasFriends: true,
-      dummyData: [
-        { user: { avatar: '', name: 'Test Name 1', timestamp: '2020-09-22T19:55:00' }, activity: { header: 'Test 1', description: 'test 1' } },
-        { user: { avatar: '', name: 'Test Name 2', timestamp: '2020-09-21T20:00:00' }, activity: { header: 'Test 2', description: 'test 2' } },
-        { user: { avatar: '', name: 'Test Name 3', timestamp: '2020-09-22T18:00:00' }, activity: { header: 'Test 3', description: 'test 3' } },
-        { user: { avatar: '', name: 'Test Name 4', timestamp: '2020-09-22T18:00:00' }, activity: { header: 'Test 4', description: 'test 4' } },
-        { user: { avatar: '', name: 'Test Name 5', timestamp: '2020-09-22T18:00:00' }, activity: { header: 'Test 5', description: 'test 5' } }
-      ]
+      activities: []
+    }
+  },
+  mounted() {
+    this.getActivity()
+  },
+  methods: {
+    async getActivity() {
+      const { data } = await api.activity.list()
+      this.activities = data.data
+    },
+    async postComment(value, activityId) {
+      await api.comment.post({ activity_id: activityId, content: value })
+      await this.getActivity()
+    },
+    async toggleLike(activityId) {
+      try {
+        const { data } = await api.activity.like({ activity_id: activityId })
+        this.$bvToast.toast(data.meta.message, {
+          title: 'Successfully Like Activity',
+          variant: 'success'
+        })
+      } catch ({ response }) {
+        this.$bvToast.toast(response.data.meta.message, {
+          title: 'Failed to Like Activity',
+          variant: 'danger'
+        })
+      }
     }
   }
 };

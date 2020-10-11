@@ -22,6 +22,62 @@
             :color="hasUserCheckedIn ? '#43a047' : '#9e9e9e'"
             @click="$emit('onCheckIn')"
           />
+          <b-card class="mt-3 activity-bg-grey">
+            <v-observer
+              v-slot="{ valid }"
+              tag="div"
+              ref="activity"
+            >
+              <form @submit.prevent="editActivity">
+                <v-provider
+                  v-slot="{ errors }"
+                  rules="required"
+                  name="content"
+                >
+                  <b-form-group :invalid-feedback="errors[0]">
+                    <b-form-input
+                      v-model="activity.content"
+                      disabled
+                    />
+                  </b-form-group>
+                </v-provider>
+                <v-provider
+                  v-slot="{ errors }"
+                  name="note"
+                  rules="required"
+                >
+                  <b-form-group :invalid-feedback="errors[0]">
+                    <b-form-textarea
+                      v-model="activity.note"
+                      placeholder="Add a note..."
+                      @focus="$emit('onNoteFocus')"
+                    />
+                  </b-form-group>
+                </v-provider>
+                <div
+                  v-if="isNoteFocused"
+                  class="d-flex flex-row"
+                >
+                  <b-button
+                    type="submit"
+                    variant="primary"
+                    class="mr-2"
+                    :disabled="!valid"
+                    @mousedown="$emit('onSubmit')"
+                  >
+                    Post
+                  </b-button>
+                  <b-button
+                    variant="light"
+                    class="ml-2"
+                    @mousedown="$emit('onCancel')"
+                  >
+                    Cancel
+                  </b-button>
+                </div>
+              </form>
+            </v-observer>
+          </b-card>
         </b-col>
       </b-row>
       <b-row class="py-3 border-bottom-grey">
@@ -72,13 +128,13 @@
               :key="i"
             >
               <b-avatar
-                v-if="user.avatar && avatarGroupLimit.length < maxLength"
+                v-if="user.avatar && (avatarGroupLimit.length < maxLength || i < avatarGroupLimit.length - 2)"
                 variant="light"
                 :key="i"
                 :src="`${bgUrl}${user.avatar}`"
               />
               <b-avatar
-                v-else-if="user.avatar === null && avatarGroupLimit.length < maxLength"
+                v-else-if="user.avatar === null && (avatarGroupLimit.length < maxLength || i < avatarGroupLimit.length - 2)"
                 variant="danger"
                 :text="`${getNameInitial(user.first_name, user.last_name)}`"
               />
@@ -126,6 +182,23 @@ export default {
     userId: {
       type: Number,
       default: () => null
+    },
+    isNoteFocused: {
+      type: Boolean,
+      default: () => false
+    },
+    activity: {
+      type: Object,
+      default: () => ({
+        id: null,
+        topic_id: null,
+        content: null,
+        note: null
+      })
+    },
+    editActivity: {
+      type: Function,
+      default: () => {}
     }
   },
   data() {
@@ -153,13 +226,43 @@ export default {
     }
   },
   methods: {
-    getNameInitial
+    getNameInitial,
+    toggleNote() {
+      this.isNoteFocused = !this.isNoteFocused
+    }
   }
 };
 </script>
 
 <style scoped lang="scss">
+  input {
+    border: none;
+    border-bottom: solid 2px var(--md-white);
+    background-color: transparent;
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+
+  textarea {
+    height: 50px;
+    border: none;
+    background-color: transparent;
+
+    &:focus {
+      height: 150px;
+      outline: none !important;
+      border: solid 1px var(--md-white);
+      background-color: transparent;
+    }
+  }
+
   .border-bottom-grey {
     border-bottom: solid 1px var(--md-grey-300);
+  }
+
+  .activity-bg-grey {
+    background-color: var(--md-blue-grey-50);
   }
 </style>

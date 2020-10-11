@@ -60,13 +60,13 @@
                 :key="i"
               >
                 <b-avatar
-                  v-if="user.avatar && avatarCheckInGroup.length < maxLength"
+                  v-if="user.avatar && (avatarCheckInGroup.length < maxLength || i < avatarCheckInGroup.length - 2)"
                   variant="light"
                   :key="i"
                   :src="`${bgUrl}${user.avatar}`"
                 />
                 <b-avatar
-                  v-else-if="user.avatar === null && avatarCheckInGroup.length < maxLength"
+                  v-else-if="user.avatar === null && (avatarCheckInGroup.length < maxLength || i < avatarCheckInGroup.length - 2)"
                   variant="danger"
                   :text="`${getNameInitial(user.first_name, user.last_name)}`"
                 />

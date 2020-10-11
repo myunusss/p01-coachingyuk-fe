@@ -38,5 +38,15 @@ export default {
   reply: {
     list: params => request.get('/replies', { params }),
     post: params => request.post('/replies', params)
+  },
+  activity: {
+    list: params => request.get('/activities', { params }),
+    post: params => request.post('/activities', params),
+    edit: (id, params) => request.put(`/activities/${id}`, params),
+    like: params => request.post('/activities/toggle-liked', params)
+  },
+  comment: {
+    list: params => request.get('/activity-replies', { params }),
+    post: params => request.post('/activity-replies', params)
   }
 }
