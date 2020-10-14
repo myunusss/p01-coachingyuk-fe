@@ -38,7 +38,10 @@
                 :text="`${getNameInitial(user.first_name, user.last_name)}`"
               />
               <b-dropdown variant="transparent">
-                <b-dropdown-item @click="becomeACoach">
+                <b-dropdown-item
+                  v-if="user.role.code !== 'coach'"
+                  @click="$router.push('/become-a-coach')"
+                >
                   Become a Coach
                 </b-dropdown-item>
                 <b-dropdown-item @click="$router.push('/profile')">
@@ -57,7 +60,6 @@
 </template>
 
 <script>
-import api from '@/api'
 import { getNameInitial } from '@/utils/avatarHelper'
 
 export default {
@@ -78,21 +80,6 @@ export default {
   },
   methods: {
     getNameInitial,
-    async becomeACoach() {
-      try {
-        const { data } = await api.user.becomeCoach()
-        localStorage.setItem('user', JSON.stringify(data.data))
-        this.$bvToast.toast(data.meta.message, {
-          title: 'Become a Coach Successful',
-          variant: 'success'
-        })
-      } catch ({ response }) {
-        this.$bvToast.toast(response.data.meta.message, {
-          title: 'Failed To Become a Coach',
-          variant: 'danger'
-        })
-      }
-    },
     onClickMenu(val) {
       val.isActive = !val.isActive
       this.menus.map(v => {
@@ -104,8 +91,10 @@ export default {
       this.$router.push(val.route)
     },
     setDefaultMenu() {
-      const defaultMenu = this.menus.find(v => v.id === this.isMenuActive)
-      this.$router.push(defaultMenu.route)
+      if (this.$route.path !== '/apply-coach') {
+        const defaultMenu = this.menus.find(v => v.id === this.isMenuActive)
+        this.$router.push(defaultMenu.route)
+      }
     },
     logout() {
       localStorage.removeItem('user')

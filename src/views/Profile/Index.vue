@@ -38,6 +38,9 @@
                 <h3 class="text-white align-self-center">
                   {{ user.first_name }}&nbsp;{{ user.last_name }}
                 </h3>
+                <p class="m-0 text-white text-center font-italic align-self-center">
+                  {{ user.bio }}
+                </p>
               </b-col>
             </b-row>
           </b-card-body>
@@ -188,7 +191,7 @@
                       ? 'primary'
                       : 'secondary'"
                   >
-                    {{ user.follower ? user.follower.length : 0 }}
+                    {{ user.followers ? user.followers.length : 0 }}
                   </b-badge>
                 </b-col>
               </b-row>
@@ -307,9 +310,9 @@ ___ _  _ ___ ___ _  __  ___ _  _
                   <h5>Followers</h5>
                 </b-col>
               </b-row>
-              <div v-if="user.follower && user.follower.length">
+              <div v-if="user.followers && user.followers.length">
                 <card-follower
-                  v-for="(item, i) of user.follower"
+                  v-for="(item, i) of user.followers"
                   :key="i"
                   :follower="item"
                 />
@@ -404,6 +407,7 @@ export default {
     async getDetailUser() {
       const { data } = await api.user.detail(this.userId)
       this.user = data.data
+      console.log('usr', this.user)
 
       await this.getTopic()
       await this.getActivity()

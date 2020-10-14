@@ -75,7 +75,10 @@
               <h6 class="text-center">
                 Belajar dari para Ahli dan dapatkan tips-tips yang praktikal.
               </h6>
-              <b-button class="mt-3 button-fill-accent">
+              <b-button
+                class="mt-3 button-fill-accent"
+                @click="$router.push('/event')"
+              >
                 DAPATKAN ILMU
               </b-button>
             </b-col>
@@ -88,7 +91,10 @@
               <h6 class="text-center">
                 Pelatih khusus siap memberi bantuan pribadi, saran, dan akuntabilitas.
               </h6>
-              <b-button class="mt-3 button-fill-accent">
+              <b-button
+                class="mt-3 button-fill-accent"
+                @click="$router.push('/become-a-coach')"
+              >
                 TEMUKAN COACH
               </b-button>
             </b-col>
@@ -251,14 +257,11 @@
                 <h3 class="text-white font-weight-bold">
                   COACHES
                 </h3>
-                <p class="text-white">
-                  Coach Directory
-                </p>
-                <p class="text-white">
+                <p
+                  class="text-white pointer"
+                  @click="$router.push('/become-a-coach')"
+                >
                   Become a Coach
-                </p>
-                <p class="text-white">
-                  Habit Coach Certification
                 </p>
               </b-col>
             </b-row>

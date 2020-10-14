@@ -8,6 +8,6 @@ export default {
     path: 'edit',
     name: 'Edit',
     props: true,
-    component: () => import(/* webpackChunkName: 'profile-edt' */ '@/views/Profile/Edit')
+    component: () => import(/* webpackChunkName: 'profile-edit' */ '@/views/Profile/Edit')
   }]
 }

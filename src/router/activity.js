@@ -1,5 +1,5 @@
 export default {
-  path: '/activity',
+  path: 'activity',
   component: () => import(/* webpackChunkName: 'activity' */ '@/views/RouteWrapper'),
   children: [{
     path: '',

@@ -8,6 +8,7 @@ import Profile from './profile'
 import Topic from './topic'
 import Question from './question'
 import Comment from './comment'
+import Coach from './becomeCoach'
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,16 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: 'signUp' */ '@/views/SignUp/Index')
     },
     {
+      path: '/become-a-coach',
+      name: 'BecomeCoach',
+      component: () => import(/* webpackChunkName: 'become-a-coach' */ '@/views/BecomeCoach/Index')
+    },
+    {
+      path: '/event',
+      name: 'Event',
+      component: () => import(/* webpackChunkName: 'event' */ '@/views/Event/Index')
+    },
+    {
       path: '/',
       name: 'Home',
       component: () => import(/* webpackChunkName: 'home' */ '@/views/Home'),
@@ -51,7 +62,8 @@ const router = new VueRouter({
         { ...Profile },
         { ...Topic },
         { ...Question },
-        { ...Comment }
+        { ...Comment },
+        { ...Coach }
       ]
     },
     {
@@ -64,7 +76,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path !== '/landing' && !localStorage.getItem('user')) {
     if (to.path === '/login' || to.path === '/sign-up' || to.path === '/terms-and-conditions'
-      || to.path === '/privacy-policy') {
+      || to.path === '/privacy-policy' || to.path === '/become-a-coach' || to.path === '/event') {
       return next()
     }
     next('/landing')

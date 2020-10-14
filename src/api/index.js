@@ -48,5 +48,8 @@ export default {
   comment: {
     list: params => request.get('/activity-replies', { params }),
     post: params => request.post('/activity-replies', params)
+  },
+  event: {
+    list: params => request.get('/events', { params })
   }
 }

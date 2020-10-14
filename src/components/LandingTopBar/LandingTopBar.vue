@@ -16,6 +16,14 @@
         >
           <b-row class="justify-content-end">
             <b-button
+              v-show="$route.path === '/event'"
+              variant="transparent font-weight-bold btn-transparent-white"
+              @click="$router.push('/become-a-coach')"
+            >
+              BECOME A COACH
+            </b-button>
+            <b-button
+              v-show="$route.path !== '/event'"
               variant="transparent font-weight-bold btn-transparent-white"
               @click="$router.push('/login')"
             >
