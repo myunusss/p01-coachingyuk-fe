@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 bg-light-blue">
+  <div class="p-5 bg-gradient-blue">
     <b-container>
       <div class="d-flex flex-column justify-content-center">
         <div class="w-100 mb-5 align-self-center">
@@ -17,7 +17,7 @@
             class="d-flex mb-2 justify-content-center"
             :key="i"
           >
-            <b-badge class="w-100 p-3 pointer text-truncate badge-transparent">
+            <b-badge class="w-100 p-3 pointer badge-transparent text-truncate">
               {{ item.name }}
             </b-badge>
           </b-col>
@@ -37,7 +37,7 @@
             class="d-flex mb-2 justify-content-center"
             :key="i"
           >
-            <b-badge class="w-100 p-3 pointer text-truncate badge-transparent">
+            <b-badge class="w-100 p-3 pointer badge-transparent text-truncate">
               {{ item.name }}
             </b-badge>
           </b-col>
@@ -56,7 +56,7 @@
           <b-input placeholder="Search..." />
           <b-input-group-append>
             <b-button
-              variant="primary"
+              variant="secondary"
               class="button-border"
             >
               SEARCH
@@ -89,8 +89,8 @@ export default {
     border-radius: 20px;
   }
 
-  .bg-light-blue {
-    background: radial-gradient(#4fc3f7, #2196F3);
+  .bg-gradient-blue {
+    background: linear-gradient(to bottom, var(--md-deep-purple-800), var(--md-blue-600));
   }
 
   .text-header {

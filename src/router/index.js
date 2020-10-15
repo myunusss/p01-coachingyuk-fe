@@ -9,6 +9,7 @@ import Topic from './topic'
 import Question from './question'
 import Comment from './comment'
 import Coach from './becomeCoach'
+import CoachPage from './coachPage'
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: 'event' */ '@/views/Event/Index')
     },
     {
+      path: '/search-coach',
+      name: 'SearchCoach',
+      component: () => import(/* webpackChunkName: 'search-coach' */ '@/views/FindACoach/Landing/Index')
+    },
+    {
       path: '/',
       name: 'Home',
       component: () => import(/* webpackChunkName: 'home' */ '@/views/Home'),
@@ -63,7 +69,8 @@ const router = new VueRouter({
         { ...Topic },
         { ...Question },
         { ...Comment },
-        { ...Coach }
+        { ...Coach },
+        { ...CoachPage }
       ]
     },
     {
@@ -76,7 +83,8 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path !== '/landing' && !localStorage.getItem('user')) {
     if (to.path === '/login' || to.path === '/sign-up' || to.path === '/terms-and-conditions'
-      || to.path === '/privacy-policy' || to.path === '/become-a-coach' || to.path === '/event') {
+      || to.path === '/privacy-policy' || to.path === '/become-a-coach' || to.path === '/event'
+      || to.path === '/search-coach') {
       return next()
     }
     next('/landing')

@@ -178,10 +178,4 @@ export default {
   .card-height {
     height: 500px;
   }
-
-  .truncate {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 </style>

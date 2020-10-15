@@ -1,18 +1,25 @@
 <template>
-  <div class="bg-white main-padding-coach">
-    <search :topics="topics" />
-    <recommendation :coaches="coaches" />
+  <div>
+    <top-bar is-button-shown />
+    <main>
+      <div class="bg-white main-padding-coach">
+        <search :topics="topics" />
+        <recommendation :coaches="coaches" />
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
-import Search from './Search/Search'
-import Recommendation from './Recommendation/Recommendation'
+import TopBar from '@/components/LandingTopBar/LandingTopBar'
+import Search from '@/views/FindACoach/Landing/Search/Search'
+import Recommendation from '@/views/FindACoach/Landing/Recommendation/Recommendation'
 
 import api from '@/api'
 
 export default {
   components: {
+    TopBar,
     Search,
     Recommendation
   },
@@ -40,8 +47,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .main-padding-coach {
-    padding-top: 90px;
-    padding-bottom: 25px;
-  }
+.main-padding-coach {
+  padding-top: 85px;
+  padding-bottom: 25px;
+}
 </style>

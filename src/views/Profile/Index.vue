@@ -407,7 +407,6 @@ export default {
     async getDetailUser() {
       const { data } = await api.user.detail(this.userId)
       this.user = data.data
-      console.log('usr', this.user)
 
       await this.getTopic()
       await this.getActivity()

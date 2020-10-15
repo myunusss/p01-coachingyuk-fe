@@ -8,11 +8,6 @@
               TOP COACHES
             </h4>
           </b-col>
-          <b-col class="d-flex justify-content-end">
-            <h5 class="font-weight-bold text-color-light-blue">
-              SEE ALL >
-            </h5>
-          </b-col>
         </b-row>
         <b-row>
           <b-col
@@ -45,11 +40,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .text-color-light-blue {
-    color: #2196F3;
-  }
+.text-color-light-blue {
+  color: #2196F3;
+}
 
-  .bg-grey {
-    background-color: var(--md-blue-grey-50);
-  }
+.bg-grey {
+  background-color: var(--md-blue-grey-50);
+}
 </style>

@@ -93,7 +93,7 @@
               </h6>
               <b-button
                 class="mt-3 button-fill-accent"
-                @click="$router.push('/become-a-coach')"
+                @click="$router.push('/search-coach')"
               >
                 TEMUKAN COACH
               </b-button>
@@ -107,7 +107,10 @@
               <h6 class="text-center">
                 Pelatihan Digital dan Alat-alat untuk membangun praktek coaching yang berhasil.
               </h6>
-              <b-button class="mt-3 button-fill-accent">
+              <b-button
+                class="mt-3 button-fill-accent"
+                @click="$router.push('/become-a-coach')"
+              >
                 PELAJARI
               </b-button>
             </b-col>
