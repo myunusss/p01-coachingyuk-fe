@@ -44,6 +44,12 @@
                 >
                   Become a Coach
                 </b-dropdown-item>
+                <b-dropdown-item
+                  v-else
+                  @click="$router.push('/coach-page/setting')"
+                >
+                  Coach Setting
+                </b-dropdown-item>
                 <b-dropdown-item @click="$router.push('/profile')">
                   Profile
                 </b-dropdown-item>

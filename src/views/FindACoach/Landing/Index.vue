@@ -40,7 +40,7 @@ export default {
     },
     async fetchCoaches() {
       const { data } = await api.user.list({ sort_by: 'created_at', sort_dir: 'asc' })
-      this.coaches = data.data
+      this.coaches = data.data.filter(v => v.role.code === 'coach')
     }
   }
 }

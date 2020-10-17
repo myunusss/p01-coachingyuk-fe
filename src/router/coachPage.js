@@ -11,5 +11,10 @@ export default {
     name: 'CoachPageSubscribe',
     props: true,
     component: () => import(/* webpackChunkName: 'coach-page/subscribe' */ '@/views/CoachPage/Subscribe')
+  }, {
+    path: 'setting',
+    name: 'CoachPageSetting',
+    props: true,
+    component: () => import(/* webpackChunkName: 'coach-page/setting' */ '@/views/CoachPage/Setting')
   }]
 }
