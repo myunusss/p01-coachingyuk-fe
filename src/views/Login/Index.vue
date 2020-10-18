@@ -12,7 +12,7 @@
               <p class="align-self-center text-white">
                 You don't have a password? Then please <a
                   class="text-orange pointer"
-                  @click="$router.push('/sign-up')"
+                  @click="isEvent ? $router.push('/sign-up-event') : $router.push('/sign-up')"
                 >Sign Up</a>
               </p>
             </b-col>
@@ -84,6 +84,7 @@ export default {
   },
   data() {
     return {
+      isEvent: this.$route.path === '/login-event',
       credential: {
         username: null,
         password: null
@@ -98,7 +99,11 @@ export default {
         const { data } = await api.login(this.credential)
         localStorage.setItem('user',JSON.stringify(data.data))
         localStorage.setItem('token', data.data.token)
-        this.$router.replace('/')
+        if (this.isEvent) {
+          const encryptedUser = btoa(JSON.stringify(data.data))
+          return window.location.replace(`http://event.coachingyuk.com?data=${encryptedUser}`)
+        }
+        return this.$router.replace('/')
       } catch ({ response }) {
         this.$bvToast.toast(response.data.meta.message, {
           title: 'Log In Failed',

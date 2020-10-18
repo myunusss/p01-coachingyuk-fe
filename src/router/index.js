@@ -38,8 +38,18 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: 'login' */ '@/views/Login/Index')
     },
     {
+      path: '/login-event',
+      name: 'LoginEvent',
+      component: () => import(/* webpackChunkName: 'login' */ '@/views/Login/Index')
+    },
+    {
       path: '/sign-up',
       name: 'SignUp',
+      component: () => import(/* webpackChunkName: 'signUp' */ '@/views/SignUp/Index')
+    },
+    {
+      path: '/sign-up-event',
+      name: 'SignUpEvent',
       component: () => import(/* webpackChunkName: 'signUp' */ '@/views/SignUp/Index')
     },
     {
@@ -82,8 +92,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.path !== '/landing' && !localStorage.getItem('user')) {
-    if (to.path === '/login' || to.path === '/sign-up' || to.path === '/terms-and-conditions'
-      || to.path === '/privacy-policy' || to.path === '/become-a-coach' || to.path === '/event'
+    if (to.path === '/login' || to.path === '/login-event'
+      || to.path === '/sign-up' || to.path === '/sign-up-event'
+      || to.path === '/terms-and-conditions' || to.path === '/privacy-policy'
+      || to.path === '/become-a-coach' || to.path === '/event'
       || to.path === '/search-coach') {
       return next()
     }

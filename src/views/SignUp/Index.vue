@@ -135,7 +135,7 @@
               <p class="align-self-center text-white">
                 Already signed up? Then just <a
                   class="text-orange pointer"
-                  @click="$router.push('/login')"
+                  @click="isEvent ? $router.push('/login-event') : $router.push('/login')"
                 >Log In</a>
               </p>
             </b-col>
@@ -158,6 +158,7 @@ export default {
   },
   data() {
     return {
+      isEvent: this.$route.path === '/sign-up-event',
       credential: {
         first_name: null,
         last_name: null,
@@ -178,7 +179,11 @@ export default {
         const { data } = await api.signUp(this.credential)
         localStorage.setItem('user', JSON.stringify(data.data))
         localStorage.setItem('token', data.data.token)
-        this.$router.replace('/')
+        if (this.isEvent) {
+          const encryptedUser = btoa(JSON.stringify(data.data))
+          return window.location.replace(`http://event.coachingyuk.com?data=${encryptedUser}`)
+        }
+        return this.$router.replace('/')
       } catch ({ response }) {
         this.$bvToast.toast(response.data.meta.message, {
           title: 'Sign Up Failed',

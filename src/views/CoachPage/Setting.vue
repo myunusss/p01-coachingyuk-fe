@@ -45,6 +45,14 @@
             v-if="menuActive === 'profile-1'"
             :user="user"
           />
+          <hire-profile
+            v-if="menuActive === 'profile-3'"
+            :is-available.sync="isAvailable"
+          />
+          <directory-profile
+            v-if="menuActive === 'profile-4'"
+            :directories="directory"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -62,6 +70,8 @@ import Plans from '@/views/CoachPage/Plans/Plans'
 import Manage from '@/views/CoachPage/Manage/Manage'
 
 import EditProfile from '@/views/CoachPage/Profile/Edit'
+import HireProfile from '@/views/CoachPage/Profile/Hire'
+import DirectoryProfile from '@/views/CoachPage/Profile/Directory'
 
 export default {
   components: {
@@ -73,11 +83,23 @@ export default {
     Education,
     Plans,
     Manage,
-    EditProfile
+    EditProfile,
+    HireProfile,
+    DirectoryProfile
   },
   data() {
     return {
       menuActive: '',
+      isAvailable: true,
+      directory: {
+        isIncludeInDirectory: true,
+        isUploadAvatar: true,
+        isAddPackages: true,
+        isAddBio: true,
+        isAvailableForHire: true,
+        isAddCoverImage: true,
+        isAddDescription: true
+      },
       user: localStorage.getItem('user')
         ? JSON.parse(localStorage.getItem('user'))
         : {}
