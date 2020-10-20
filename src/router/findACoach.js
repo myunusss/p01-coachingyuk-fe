@@ -1,5 +1,5 @@
 export default {
-  path: '/find-a-coach',
+  path: 'find-a-coach',
   component: () => import(/* webpackChunkName: 'find-a-coach' */ '@/views/RouteWrapper'),
   children: [{
     path: '',

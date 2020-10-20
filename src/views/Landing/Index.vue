@@ -21,6 +21,7 @@
             </b-col>
             <b-col>
               <b-img
+                fluid
                 height="550"
                 :src="require('../../assets/img-dummy-header.png')"
               />
@@ -41,24 +42,27 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <b-img
+                      fluid
+                      height="450"
                       :src="require('../../assets/img-dummy-default-category.jpg')"
-                      height="450"
                     />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
                     <b-img
+                      fluid
+                      height="450"
                       :src="require('../../assets/img-dummy-carousel-sleep.jpg')"
-                      height="450"
                     />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
                     <b-img
-                      :src="require('../../assets/img-dummy-carousel-icf.jpg')"
+                      fluid
                       height="450"
+                      :src="require('../../assets/img-dummy-carousel-icf.jpg')"
                     />
                   </template>
                 </b-carousel-slide>
@@ -133,6 +137,7 @@
             </b-col>
             <b-col>
               <b-img
+                fluid
                 width="450"
                 :src="require('../../assets/img-dummy-landing.jpg')"
               />
@@ -150,6 +155,7 @@
                     <b-row>
                       <b-col class="d-flex justify-content-center">
                         <b-img
+                          fluid
                           rounded="circle"
                           class="align-self-center"
                           :src="require('../../assets/ic_landing_testi_iman.jpg')"
@@ -169,6 +175,7 @@
                     <b-row>
                       <b-col class="d-flex justify-content-center">
                         <b-img
+                          fluid
                           rounded="circle"
                           class="align-self-center"
                           :src="require('../../assets/ic_landing_testi_hasanah.jpg')"
@@ -188,6 +195,7 @@
                     <b-row>
                       <b-col class="d-flex justify-content-center">
                         <b-img
+                          fluid
                           rounded="circle"
                           class="align-self-center"
                           :src="require('../../assets/ic_landing_testi_budi.jpg')"
