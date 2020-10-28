@@ -2,13 +2,13 @@
   <b-container class="main-padding">
     <div>
       <b-row>
-        <b-col>
+        <b-col md="6">
           <b-card>
             <b-row class="d-flex p-3 justify-content-center header-card">
-              <b-col cols="10">
+              <b-col md="10">
                 <div>
                   <b-row class="justify-content-center">
-                    <b-col cols="2">
+                    <b-col md="2">
                       <b-row class="d-flex justify-content-center">
                         <small class="text-muted">
                           {{ format(dashboardDate, 'MMM') }}
@@ -21,7 +21,7 @@
                       </b-row>
                     </b-col>
                     <b-col
-                      cols="2"
+                      md="2"
                       class="d-flex justify-content-center"
                     >
                       <b-dropdown
@@ -41,7 +41,7 @@
                 </div>
               </b-col>
               <b-col
-                cols="2"
+                md="2"
                 class="d-flex flex-column justify-content-center"
               >
                 <fa-icon
@@ -59,12 +59,12 @@
             >
               <b-row class="w-100">
                 <b-col
-                  cols="8"
+                  md="8"
                   class="d-flex align-items-center"
                 >
                   No goals added
                 </b-col>
-                <b-col cols="4">
+                <b-col md="4">
                   <b-button
                     variant="primary"
                     @click="isCategoriesShown = !isCategoriesShown"
@@ -101,7 +101,10 @@
             </b-row>
           </b-card>
         </b-col>
-        <b-col>
+        <b-col
+          md="6"
+          class="mt-3 mt-md-0"
+        >
           <!--
    ___   _ _____ ___ ___  ___  ___ ___ ___ ___
   / __| /_\_   _| __/ __|/ _ \| _ \_ _| __/ __|

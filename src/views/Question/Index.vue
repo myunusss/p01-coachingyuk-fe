@@ -1,7 +1,7 @@
 <template>
   <b-container class="main-padding">
     <b-row>
-      <b-col>
+      <b-col md="6">
         <h6 class="pb-3 mb-3 border-bottom-grey">
           Question asked in
           <span
@@ -78,7 +78,7 @@
           </b-card-body>
         </b-card>
       </b-col>
-      <b-col />
+      <b-col md="6" />
     </b-row>
   </b-container>
 </template>

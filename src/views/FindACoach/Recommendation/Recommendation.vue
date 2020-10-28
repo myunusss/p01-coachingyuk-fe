@@ -16,7 +16,7 @@
         </b-row>
         <b-row>
           <b-col
-            cols="3"
+            md="3"
             v-for="(items, i) of coaches"
             :key="i"
           >

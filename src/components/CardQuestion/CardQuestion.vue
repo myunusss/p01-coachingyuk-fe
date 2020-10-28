@@ -13,7 +13,8 @@
     </b-row>
     <b-row class="mb-2">
       <b-col
-        cols="2"
+        cols="3"
+        md="2"
         class="d-flex justify-content-center"
       >
         <b-avatar
@@ -28,7 +29,8 @@
         />
       </b-col>
       <b-col
-        cols="10"
+        cols="9"
+        md="10"
         class="d-flex justify-content-start"
       >
         <h6 class="font-weight-bold align-self-center">

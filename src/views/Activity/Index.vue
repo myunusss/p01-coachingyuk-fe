@@ -1,7 +1,7 @@
 <template>
   <b-container class="main-padding">
     <div class="d-flex justify-content-center">
-      <b-card class="w-50 align-self-center">
+      <b-card class="w-res-50 align-self-center">
         <b-row class="py-3 text-center justify-content-center divider">
           <h4>Activity</h4>
         </b-row>

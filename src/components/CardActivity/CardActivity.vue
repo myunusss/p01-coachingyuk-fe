@@ -2,7 +2,8 @@
   <div class="w-100">
     <b-row class="justify-content-center">
       <b-col
-        cols="2"
+        cols="3"
+        md="2"
         class="justify-content-center"
       >
         <b-avatar
@@ -17,6 +18,7 @@
       </b-col>
       <b-col
         cols="5"
+        md="5"
         class="d-flex justify-content-start"
       >
         <h6 class="align-self-center">
@@ -24,7 +26,8 @@
         </h6>
       </b-col>
       <b-col
-        cols="5"
+        cols="4"
+        md="5"
         class="d-flex justify-content-end"
       >
         <small class="align-self-center text-muted">{{ formatDistanceToNow(new Date(activity.updated_at)) }}</small>
@@ -88,7 +91,7 @@
       >
         <b-row>
           <b-col
-            cols="1"
+            md="1"
             class="d-flex align-items-center"
           >
             <fa-icon
@@ -97,7 +100,7 @@
             />
           </b-col>
           <b-col
-            cols="11"
+            md="11"
             class="d-flex flex-row align-items-center"
           >
             <b-avatar

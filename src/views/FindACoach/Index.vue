@@ -41,6 +41,9 @@ export default {
 
 <style scoped lang="scss">
   .main-padding-coach {
+    @media screen and (max-width: 765px) {
+      padding-top: 140px;
+    }
     padding-top: 90px;
     padding-bottom: 25px;
   }

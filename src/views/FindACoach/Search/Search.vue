@@ -12,7 +12,7 @@
         </div>
         <b-row class="w-75 d-flex align-self-center justify-content-center">
           <b-col
-            cols="3"
+            md="3"
             v-for="(item, i) of topics"
             class="d-flex mb-2 justify-content-center"
             :key="i"
@@ -32,7 +32,7 @@
         </div>
         <b-row class="w-75 mb-3 d-flex align-self-center justify-content-center">
           <b-col
-            cols="3"
+            md="3"
             v-for="(item, i) of topics"
             class="d-flex mb-2 justify-content-center"
             :key="i"
@@ -44,7 +44,7 @@
         </b-row>
       </div>
       <div class="d-flex mt-3 justify-content-center">
-        <b-input-group class="w-50 align-self-center input-bg-white">
+        <b-input-group class="w-res-50 align-self-center input-bg-white">
           <b-input-group-prepend>
             <b-button variant="transparent">
               <fa-icon

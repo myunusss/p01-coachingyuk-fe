@@ -1,6 +1,6 @@
 <template>
   <b-container class="d-flex justify-content-center main-padding">
-    <b-card class="w-75">
+    <b-card class="w-res-75">
       <b-row class="pb-3 border-bottom-grey">
         <b-col
           class="d-flex flex-row align-items-center pointer"

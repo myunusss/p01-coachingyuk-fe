@@ -4,8 +4,9 @@
       <b-container>
         <b-row>
           <b-col
-            cols="5"
-            class="d-flex justify-content-center align-items-center"
+            cols="6"
+            md="5"
+            class="d-flex flex-column flex-md-row justify-content-center align-items-md-center"
           >
             <div
               v-for="(item, i) of menus"
@@ -17,17 +18,15 @@
               {{ item.name.toUpperCase() }}
             </div>
           </b-col>
-          <b-col cols="2" />
+          <b-col
+            cols="1"
+            md="2"
+          />
           <b-col
             cols="5"
+            md="5"
             class="d-flex end-col"
           >
-            <b-button
-              variant="transparent"
-              class="bell-hover-accent mr-2"
-            >
-              <fa-icon icon="bell" />
-            </b-button>
             <div class="d-flex flex-row p-2 setting-hover-accent">
               <b-avatar
                 v-if="user.avatar"

@@ -8,10 +8,13 @@
     >
       <b-card-body>
         <b-row>
-          <b-col>
+          <b-col md="6">
             <h3>{{ topic.name }}</h3>
           </b-col>
-          <b-col class="d-flex justify-content-end">
+          <b-col
+            md="6"
+            class="d-flex justify-content-end"
+          >
             <b-button
               variant="primary"
               class="w-25 align-self-center"
@@ -40,7 +43,8 @@
         </b-row>
         <b-row class="py-3 border-bottom-grey">
           <b-col
-            cols="1"
+            cols="3"
+            md="1"
             class="pl-0"
           >
             <p class="m-0 text-secondary">
@@ -51,7 +55,7 @@
             </small>
           </b-col>
           <b-col
-            cols="10"
+            cols="8"
             class="d-flex flex-row align-items-center"
           >
             <b-avatar-group>
@@ -84,6 +88,7 @@
           </b-col>
           <b-col
             cols="1"
+            md="1"
             class="pr-0 d-flex justify-content-center"
           >
             <fa-icon
@@ -96,7 +101,8 @@
         </b-row>
         <b-row class="pt-3">
           <b-col
-            cols="1"
+            cols="3"
+            md="1"
             class="pl-0"
           >
             <p class="m-0 text-secondary">
@@ -107,7 +113,7 @@
             </small>
           </b-col>
           <b-col
-            cols="10"
+            cols="8"
             class="d-flex flex-row align-items-center"
           >
             <b-avatar-group>
@@ -153,12 +159,15 @@
       </b-card-body>
     </b-card>
     <b-row class="mt-3">
-      <b-col>
+      <b-col md="6">
         <b-card>
           <b-card-text>Ready to build this habit? Join and check in any day you meet your goal</b-card-text>
         </b-card>
       </b-col>
-      <b-col>
+      <b-col
+        md="6"
+        class="mt-3 mt-md-0"
+      >
         <b-card>
           <b-row class="d-flex flex-row justify-content-center border-bottom-grey">
             <h3 class="align-self-center">

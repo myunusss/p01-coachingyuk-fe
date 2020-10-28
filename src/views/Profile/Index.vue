@@ -47,14 +47,14 @@
         </b-card>
       </b-col>
     </b-row>
-    <div class="d-flex flex-row">
+    <b-row>
       <!--
   _    ___ ___ _____   __  __ ___ _  _ _   _
  | |  | __| __|_   _| |  \/  | __| \| | | | |
  | |__| _|| _|  | |   | |\/| | _|| .` | |_| |
  |____|___|_|   |_|   |_|  |_|___|_|\_|\___/
        -->
-      <div class="d-flex flex-column w-50">
+      <b-col md="6">
         <b-row class="w-100 mt-5">
           <b-col>
             <b-card>
@@ -95,14 +95,8 @@
                         class="fa-stack-1x"
                       />
                     </span>
-                    <h4 class="m-0 mr-2">
-                      Longest Streak of
-                    </h4>
-                    <h4 class="m-0 mr-2">
-                      {{ user.total_streak || '0' }}
-                    </h4>
                     <h4 class="m-0">
-                      in <span class="text-primary">{{ user.best_topic }}</span>
+                      Longest Streak of {{ user.total_streak || '0' }} in <span class="text-primary">{{ user.best_topic }}</span>
                     </h4>
                   </b-col>
                 </b-row>
@@ -120,11 +114,8 @@
                         :icon="['far', 'star']"
                       />
                     </span>
-                    <h4 class="m-0 mr-2">
-                      {{ formatDistanceToNow(new Date(user.created_at)) }}
-                    </h4>
                     <h4 class="m-0">
-                      on CoachingYukDotCom
+                      {{ formatDistanceToNow(new Date(user.created_at)) }} on CoachingYukDotCom
                     </h4>
                   </b-col>
                 </b-row>
@@ -216,14 +207,14 @@
             </b-card>
           </b-col>
         </b-row>
-      </div>
+      </b-col>
       <!--
   ___ ___ ___ _  _ _____   __  __ ___ _  _ _   _
  | _ \_ _/ __| || |_   _| |  \/  | __| \| | | | |
  |   /| | (_ | __ | | |   | |\/| | _|| .` | |_| |
  |_|_\___\___|_||_| |_|   |_|  |_|___|_|\_|\___/
 -->
-      <div class="w-50">
+      <b-col md="6">
         <!--
 ___ _  _ ___ ___ _  __  ___ _  _
 / __| || | __/ __| |/ /_|_ _| \| |
@@ -361,8 +352,8 @@ ___ _  _ ___ ___ _  __  ___ _  _
             </b-card>
           </b-col>
         </b-row>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
