@@ -52,5 +52,8 @@ export default {
   },
   event: {
     list: params => request.get('/events', { params })
+  },
+  feedback: {
+    post: params => request.post('/feedbacks', params)
   }
 }

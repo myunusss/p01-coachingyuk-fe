@@ -125,6 +125,14 @@
                     >
                       SIGN UP
                     </b-button>
+                    <b-progress
+                      v-if="isProgress"
+                      striped
+                      animated
+                      variant="info"
+                      value="100"
+                      class="mt-3"
+                    />
                   </b-form>
                 </v-observer>
               </b-card>
@@ -158,6 +166,7 @@ export default {
   },
   data() {
     return {
+      isProgress: false,
       isEvent: this.$route.path === '/sign-up-event',
       credential: {
         first_name: null,
@@ -176,15 +185,18 @@ export default {
       const formValid = this.$refs.signUp.validate()
       if (!formValid) return false
       try {
+        this.isProgress = true
         const { data } = await api.signUp(this.credential)
         localStorage.setItem('user', JSON.stringify(data.data))
         localStorage.setItem('token', data.data.token)
         if (this.isEvent) {
+          this.isProgress = false
           const encryptedUser = btoa(JSON.stringify(data.data))
           return window.location.replace(`http://event.coachingyuk.com?data=${encryptedUser}`)
         }
         return this.$router.replace('/')
       } catch ({ response }) {
+        this.isProgress = false
         this.$bvToast.toast(response.data.meta.message, {
           title: 'Sign Up Failed',
           variant: 'danger'
