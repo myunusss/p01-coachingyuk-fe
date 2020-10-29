@@ -11,7 +11,7 @@
             <div
               v-for="(item, i) of menus"
               class="mx-2 pointer"
-              :class="[ item.isActive ? 'menu-bottom-accent' : 'menu-hover-accent']"
+              :class="[ isMenuActive === item.id ? 'menu-bottom-accent' : 'menu-hover-accent']"
               :key="i"
               @click="onClickMenu(item)"
             >
@@ -44,6 +44,18 @@
                   Become a Coach
                 </b-dropdown-item>
                 <b-dropdown-item
+                  v-if="user.role.code !== 'coach'"
+                  @click="$router.push('/profile')"
+                >
+                  Setting
+                </b-dropdown-item>
+                <b-dropdown-item
+                  v-if="user.role.code !== 'coach'"
+                  @click="$router.push('/help')"
+                >
+                  Help
+                </b-dropdown-item>
+                <b-dropdown-item
                   v-else
                   @click="$router.push('/coach-page/setting')"
                 >
@@ -72,11 +84,18 @@ export default {
     return {
       isMenuActive: 1,
       user: JSON.parse(localStorage.getItem('user')),
-      bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`,
-      menus: [
-        { id: 1, name: 'dashboard', route: '/dashboard', isActive: true },
-        { id: 2, name: 'activity', route: '/activity', isActive: false },
-        { id: 3, name: 'find a coach', route: '/find-a-coach', isActive: false }
+      bgUrl: `${process.env.VUE_APP_BACKGROUND_URL}/`
+    }
+  },
+  computed: {
+    menus() {
+      return [
+        { id: 1, name: 'dashboard', route: '/dashboard' },
+        { id: 2, name: 'activity', route: '/activity' },
+        ( this.user.role.code !== 'coach'
+          ? { id: 3, name: 'find a coach', route: '/find-a-coach' }
+          : { id: 3, name: 'coaching', route: '/coach-chat' }
+        )
       ]
     }
   },
@@ -86,12 +105,6 @@ export default {
   methods: {
     getNameInitial,
     onClickMenu(val) {
-      val.isActive = !val.isActive
-      this.menus.map(v => {
-        if (v.id === this.isMenuActive) {
-          v.isActive = !v.isActive
-        }
-      })
       this.isMenuActive = val.id
       this.$router.push(val.route)
     },

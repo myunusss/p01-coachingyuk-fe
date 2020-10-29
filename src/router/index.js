@@ -10,6 +10,7 @@ import Question from './question'
 import Comment from './comment'
 import Coach from './becomeCoach'
 import CoachPage from './coachPage'
+import CoachChat from './coachChat'
 import NotFound from './notFound'
 
 Vue.use(VueRouter);
@@ -82,6 +83,7 @@ const router = new VueRouter({
         { ...Comment },
         { ...Coach },
         { ...CoachPage },
+        { ...CoachChat },
         { ...NotFound }
       ]
     },
