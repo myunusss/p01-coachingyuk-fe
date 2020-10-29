@@ -4,7 +4,7 @@
     <main>
       <div class="vh-100 main-padding bg-accent">
         <b-container class="d-flex flex-column justify-content-center">
-          <b-row class="w-50 mt-3 align-self-center">
+          <b-row class="w-res-50 mt-3 align-self-center">
             <b-col>
               <b-card class="p-2 bg-card-grey">
                 <v-observer

@@ -17,7 +17,7 @@
               </p>
             </b-col>
           </b-row>
-          <b-row class="w-50 mt-3 align-self-center">
+          <b-row class="w-res-50 mt-3 align-self-center">
             <b-col>
               <b-card class="p-2 bg-card-grey">
                 <v-observer
