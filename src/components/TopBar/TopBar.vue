@@ -1,12 +1,12 @@
 <template>
   <header>
     <b-card class="w-100">
-      <b-container>
+      <b-container class="p-0">
         <b-row>
           <b-col
             cols="6"
             md="5"
-            class="d-flex flex-column flex-md-row justify-content-center align-items-md-center"
+            class="d-flex p-0 flex-column flex-md-row justify-content-center align-items-md-center"
           >
             <div
               v-for="(item, i) of menus"
@@ -25,7 +25,7 @@
           <b-col
             cols="5"
             md="5"
-            class="d-flex end-col"
+            class="d-flex p-0 end-col"
           >
             <div class="d-flex flex-row p-2 setting-hover-accent">
               <b-avatar
