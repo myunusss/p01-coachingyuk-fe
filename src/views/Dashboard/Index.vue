@@ -5,10 +5,16 @@
         <b-col md="6">
           <b-card>
             <b-row class="d-flex p-3 justify-content-center header-card">
-              <b-col md="10">
+              <b-col
+                cols="8"
+                md="10"
+              >
                 <div>
-                  <b-row class="justify-content-center">
-                    <b-col md="2">
+                  <b-row class="justify-content-md-center">
+                    <b-col
+                      cols="6"
+                      md="2"
+                    >
                       <b-row class="d-flex justify-content-center">
                         <small class="text-muted">
                           {{ format(dashboardDate, 'MMM') }}
@@ -21,6 +27,7 @@
                       </b-row>
                     </b-col>
                     <b-col
+                      cols="6"
                       md="2"
                       class="d-flex justify-content-center"
                     >
@@ -41,6 +48,7 @@
                 </div>
               </b-col>
               <b-col
+                cols="4"
                 md="2"
                 class="d-flex flex-column justify-content-center"
               >
@@ -59,12 +67,16 @@
             >
               <b-row class="w-100">
                 <b-col
+                  cols="7"
                   md="8"
                   class="d-flex align-items-center"
                 >
                   No goals added
                 </b-col>
-                <b-col md="4">
+                <b-col
+                  cols="5"
+                  md="4"
+                >
                   <b-button
                     variant="primary"
                     @click="isCategoriesShown = !isCategoriesShown"

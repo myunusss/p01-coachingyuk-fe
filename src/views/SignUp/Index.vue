@@ -174,7 +174,8 @@ export default {
         username: null,
         email: null,
         password: null,
-        timezone: 'Asia/Jakarta'
+        timezone: 'Asia/Jakarta',
+        callback_url: `${process.env.VUE_APP_CALLBACK_URL}`
       },
       isAgreeToPrivacy: false,
       timezones: moment.tz.names()
@@ -186,15 +187,16 @@ export default {
       if (!formValid) return false
       try {
         this.isProgress = true
-        const { data } = await api.signUp(this.credential)
-        localStorage.setItem('user', JSON.stringify(data.data))
-        localStorage.setItem('token', data.data.token)
         if (this.isEvent) {
-          this.isProgress = false
-          const encryptedUser = btoa(JSON.stringify(data.data))
-          return window.location.replace(`http://event.coachingyuk.com?data=${encryptedUser}`)
+          this.credential.callback_url = `${process.env.VUE_APP_EVENT_CALLBACK_URL}`
         }
-        return this.$router.replace('/')
+        await api.signUp(this.credential)
+        this.isProgress = false
+        this.$bvToast.toast('Please check your email', {
+          title: 'Sign Up Success',
+          variant: 'success'
+        })
+        setTimeout(() => { this.$router.push('/landing') }, 2000)
       } catch ({ response }) {
         this.isProgress = false
         this.$bvToast.toast(response.data.meta.message, {

@@ -24,6 +24,12 @@ $carousel-control-color: var(--md-black);
     padding-bottom: 25px;
   }
 
+  .w-xs-100 {
+    @media screen and (max-width: 765px) {
+      width: 100%;
+    }
+  }
+
   .w-res-50 {
     @media screen and (max-width: 765px) {
       width: 100%;

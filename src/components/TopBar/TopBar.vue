@@ -44,18 +44,6 @@
                   Become a Coach
                 </b-dropdown-item>
                 <b-dropdown-item
-                  v-if="user.role.code !== 'coach'"
-                  @click="$router.push('/profile')"
-                >
-                  Setting
-                </b-dropdown-item>
-                <b-dropdown-item
-                  v-if="user.role.code !== 'coach'"
-                  @click="$router.push('/help')"
-                >
-                  Help
-                </b-dropdown-item>
-                <b-dropdown-item
                   v-else
                   @click="$router.push('/coach-page/setting')"
                 >
@@ -63,6 +51,12 @@
                 </b-dropdown-item>
                 <b-dropdown-item @click="$router.push('/profile')">
                   Profile
+                </b-dropdown-item>
+                <b-dropdown-item @click="$router.push('/profile')">
+                  Setting
+                </b-dropdown-item>
+                <b-dropdown-item @click="$router.push('/help')">
+                  Help
                 </b-dropdown-item>
                 <b-dropdown-item @click="logout">
                   Logout

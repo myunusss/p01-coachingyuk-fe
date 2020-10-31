@@ -71,6 +71,16 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: 'search-coach' */ '@/views/FindACoach/Landing/Index')
     },
     {
+      path: '/redirect',
+      name: 'Redirect',
+      component: () => import(/* webpackChunkName: 'redirect' */ '@/views/Redirect/Index')
+    },
+    {
+      path: '/redirect-event',
+      name: 'Redirect',
+      component: () => import(/* webpackChunkName: 'redirect' */ '@/views/Redirect/Index')
+    },
+    {
       path: '/',
       name: 'Home',
       component: () => import(/* webpackChunkName: 'home' */ '@/views/Home'),
@@ -102,7 +112,8 @@ router.beforeEach((to, from, next) => {
       || to.path === '/sign-up' || to.path === '/sign-up-event'
       || to.path === '/terms-and-conditions' || to.path === '/privacy-policy'
       || to.path === '/become-a-coach' || to.path === '/event'
-      || to.path === '/search-coach') {
+      || to.path === '/search-coach' || to.path === '/redirect'
+      || to.path === '/redirect-event') {
       return next()
     }
     next('/landing')

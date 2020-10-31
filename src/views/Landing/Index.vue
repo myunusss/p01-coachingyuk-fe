@@ -5,21 +5,24 @@
       <div class="main-padding bg-accent">
         <b-container>
           <b-row class="d-flex justify-content-center">
-            <b-col class="align-self-center">
-              <h1 class="mb-4 font-weight-bold text-white">
+            <b-col
+              md="6"
+              class="align-self-center"
+            >
+              <h1 class="mb-4 font-weight-bold text-center text-white">
                 Saatnya naik level dengan COACH yang TEPAT
               </h1>
-              <p class="mb-4 text-white">
+              <p class="mb-4 text-center text-white">
                 Akselerasi bisnis Anda. Bangun pribadi yang prima. Belajar tanpa henti.
               </p>
               <b-button
-                class="px-4 font-weight-bold button-outline-white"
+                class="px-4 mb-2 mb-md-0 w-xs-100 font-weight-bold button-outline-white"
                 @click="$router.push('/sign-up')"
               >
                 SIGN UP
               </b-button>
             </b-col>
-            <b-col>
+            <b-col md="6">
               <b-img
                 fluid
                 height="550"
@@ -120,7 +123,10 @@
             </b-col>
           </b-row>
           <b-row class="mt-xl py-5">
-            <b-col>
+            <b-col
+              md="6"
+              class="mb-3 mb-md-0"
+            >
               <h3>Mengapa Join di Coachingyuk.com</h3>
               <p>Wadah yang mempertemukan Anda dengan para Profesional Coach yang siap membantu mengembangkan potensi diri dan mempercepat pencapaian Anda menuju sukses dalam bisnis, karir, serta kehidupan. Semua kendali anda di tangan anda</p>
               <ul>
@@ -129,13 +135,13 @@
                 <li>Bisa dimana saja dan kapan saja</li>
               </ul>
               <b-button
-                class="px-4 py-2 button-fill-accent"
+                class="px-4 w-xs-100 py-2 button-fill-accent"
                 @click="$router.push('/sign-up')"
               >
                 DAPATKAN SECARA GRATIS
               </b-button>
             </b-col>
-            <b-col>
+            <b-col md="6">
               <b-img
                 fluid
                 width="450"

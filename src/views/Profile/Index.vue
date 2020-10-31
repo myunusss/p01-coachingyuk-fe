@@ -55,75 +55,73 @@
  |____|___|_|   |_|   |_|  |_|___|_|\_|\___/
        -->
       <b-col md="6">
-        <b-row class="w-100 mt-5">
+        <b-row class="mt-5">
           <b-col>
             <b-card>
-              <b-card-body>
-                <b-row class="mb-3">
-                  <b-col class="d-flex flex-row align-items-center">
-                    <span class="mr-3 fa-stack">
-                      <fa-icon
-                        icon="circle"
-                        color="#43a047"
-                        class="fa-stack-2x"
-                      />
-                      <fa-icon
-                        icon="check"
-                        color="#ffffff"
-                        class="fa-stack-1x"
-                      />
-                    </span>
-                    <h4 class="m-0 mr-2">
-                      {{ user.total_check_in_topics }}
-                    </h4>
-                    <h4 class="m-0">
-                      Total Check Ins
-                    </h4>
-                  </b-col>
-                </b-row>
-                <b-row class="mt-3">
-                  <b-col class="d-flex flex-row align-items-center">
-                    <span class="mr-3 fa-stack">
-                      <fa-icon
-                        icon="circle"
-                        color="#fb8c00"
-                        class="fa-stack-2x"
-                      />
-                      <fa-icon
-                        icon="fire"
-                        color="#ffffff"
-                        class="fa-stack-1x"
-                      />
-                    </span>
-                    <h4 class="m-0">
-                      Longest Streak of {{ user.total_streak || '0' }} in <span class="text-primary">{{ user.best_topic }}</span>
-                    </h4>
-                  </b-col>
-                </b-row>
-                <b-row class="mt-3">
-                  <b-col class="d-flex flex-row align-items-center">
-                    <span class="mr-3 fa-stack">
-                      <fa-icon
-                        icon="circle"
-                        color="#9e9e9e"
-                        class="fa-stack-2x"
-                      />
-                      <fa-icon
-                        color="#ffffff"
-                        class="fa-stack-1x"
-                        :icon="['far', 'star']"
-                      />
-                    </span>
-                    <h4 class="m-0">
-                      {{ formatDistanceToNow(new Date(user.created_at)) }} on CoachingYukDotCom
-                    </h4>
-                  </b-col>
-                </b-row>
-              </b-card-body>
+              <b-row class="mb-3">
+                <b-col class="d-flex flex-row align-items-center">
+                  <span class="mr-3 fa-stack">
+                    <fa-icon
+                      icon="circle"
+                      color="#43a047"
+                      class="fa-stack-2x"
+                    />
+                    <fa-icon
+                      icon="check"
+                      color="#ffffff"
+                      class="fa-stack-1x"
+                    />
+                  </span>
+                  <h4 class="m-0 mr-2">
+                    {{ user.total_check_in_topics }}
+                  </h4>
+                  <h4 class="m-0">
+                    Total Check Ins
+                  </h4>
+                </b-col>
+              </b-row>
+              <b-row class="mt-3">
+                <b-col class="d-flex flex-row align-items-center">
+                  <span class="mr-3 fa-stack">
+                    <fa-icon
+                      icon="circle"
+                      color="#fb8c00"
+                      class="fa-stack-2x"
+                    />
+                    <fa-icon
+                      icon="fire"
+                      color="#ffffff"
+                      class="fa-stack-1x"
+                    />
+                  </span>
+                  <h4 class="m-0">
+                    Longest Streak of {{ user.total_streak || '0' }} in <span class="text-primary">{{ user.best_topic }}</span>
+                  </h4>
+                </b-col>
+              </b-row>
+              <b-row class="mt-3">
+                <b-col class="d-flex flex-row align-items-center">
+                  <span class="mr-3 fa-stack">
+                    <fa-icon
+                      icon="circle"
+                      color="#9e9e9e"
+                      class="fa-stack-2x"
+                    />
+                    <fa-icon
+                      color="#ffffff"
+                      class="fa-stack-1x"
+                      :icon="['far', 'star']"
+                    />
+                  </span>
+                  <h4 class="m-0">
+                    {{ formatDistanceToNow(new Date(user.created_at)) }} on CoachingYukDotCom
+                  </h4>
+                </b-col>
+              </b-row>
             </b-card>
           </b-col>
         </b-row>
-        <b-row class="w-100 mt-5">
+        <b-row class="mt-5">
           <b-col>
             <b-card>
               <b-row
@@ -165,7 +163,7 @@
             </b-card>
           </b-col>
         </b-row>
-        <b-row class="w-100 mt-5">
+        <b-row class="mt-5">
           <b-col>
             <b-card>
               <b-row
@@ -420,6 +418,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  h4 {
+    @media screen and (max-width: 765px) {
+      font-size: 15px;
+    }
+  }
+
   .bg-card-header {
     height: 450px;
   }
