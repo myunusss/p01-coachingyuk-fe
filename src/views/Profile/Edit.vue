@@ -162,23 +162,6 @@
               </v-provider>
               <v-provider
                 v-slot="{ errors }"
-                name="password"
-                rules="required"
-              >
-                <b-form-group
-                  label="Password*"
-                  :invalid-feedback="errors[0]"
-                >
-                  <b-form-input
-                    v-model="user.password"
-                    type="password"
-                    class="p-4"
-                    :state="!errors.length && null"
-                  />
-                </b-form-group>
-              </v-provider>
-              <v-provider
-                v-slot="{ errors }"
                 name="bio"
                 rules="required"
               >
@@ -241,7 +224,6 @@ export default {
         last_name: '',
         username: '',
         email: '',
-        password: '',
         bio: '',
         timezone: ''
       })
@@ -271,7 +253,7 @@ export default {
         setTimeout(() => { this.$router.push('/dashboard') }, 1500)
       } catch ({ response }) {
         this.$bvToast.toast(response.data.meta.message, {
-          title: 'Log In Failed',
+          title: 'Update Failed',
           variant: 'danger'
         })
       }
@@ -291,7 +273,6 @@ export default {
       profileForm.append('last_name', this.user.last_name)
       profileForm.append('username', this.user.username)
       profileForm.append('email', this.user.email)
-      profileForm.append('password', this.user.password)
       profileForm.append('bio', this.user.bio)
       profileForm.append('avatar', this.avatarForm)
       profileForm.append('header_image', this.headerForm)

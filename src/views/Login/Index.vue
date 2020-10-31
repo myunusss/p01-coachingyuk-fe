@@ -75,6 +75,16 @@
               </b-card>
             </b-col>
           </b-row>
+          <b-row class="w-res-50 mt-3 align-self-center">
+            <b-col class="d-flex justify-content-center">
+              <p
+                class="align-self-center text-orange pointer"
+                @click="$router.push('/reset-password-email')"
+              >
+                Forgot Password ?
+              </p>
+            </b-col>
+          </b-row>
         </b-container>
       </div>
     </main>

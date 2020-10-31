@@ -45,7 +45,7 @@
                 </b-dropdown-item>
                 <b-dropdown-item
                   v-if="user.role.code !== 'coach'"
-                  @click="$router.push('/profile')"
+                  @click="$router.push('/profile/edit')"
                 >
                   Setting
                 </b-dropdown-item>
@@ -63,6 +63,9 @@
                 </b-dropdown-item>
                 <b-dropdown-item @click="$router.push('/profile')">
                   Profile
+                </b-dropdown-item>
+                <b-dropdown-item @click="$router.push('/update-password')">
+                  Update Password
                 </b-dropdown-item>
                 <b-dropdown-item @click="logout">
                   Logout

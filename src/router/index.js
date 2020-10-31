@@ -12,6 +12,7 @@ import Coach from './becomeCoach'
 import CoachPage from './coachPage'
 import CoachChat from './coachChat'
 import Help from './help'
+import Password from './password'
 import NotFound from './notFound'
 
 Vue.use(VueRouter);
@@ -71,6 +72,16 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: 'search-coach' */ '@/views/FindACoach/Landing/Index')
     },
     {
+      path: '/reset-password',
+      name: 'ResetPassword',
+      component: () => import(/* webpackChunkName: 'reset-password-email' */ '@/views/ResetPassword/Password')
+    },
+    {
+      path: '/reset-password-email',
+      name: 'ResetPasswordEmail',
+      component: () => import(/* webpackChunkName: 'reset-password-email' */ '@/views/ResetPassword/Email')
+    },
+    {
       path: '/redirect',
       name: 'Redirect',
       component: () => import(/* webpackChunkName: 'redirect' */ '@/views/Redirect/Index')
@@ -79,6 +90,11 @@ const router = new VueRouter({
       path: '/redirect-event',
       name: 'Redirect',
       component: () => import(/* webpackChunkName: 'redirect' */ '@/views/Redirect/Index')
+    },
+    {
+      path: '/redirect-password',
+      name: 'RedirectPassword',
+      component: () => import(/* webpackChunkName: 'redirect-password' */ '@/views/Redirect/Password')
     },
     {
       path: '/',
@@ -96,6 +112,7 @@ const router = new VueRouter({
         { ...CoachPage },
         { ...CoachChat },
         { ...Help },
+        { ...Password },
         { ...NotFound }
       ]
     },
@@ -113,7 +130,8 @@ router.beforeEach((to, from, next) => {
       || to.path === '/terms-and-conditions' || to.path === '/privacy-policy'
       || to.path === '/become-a-coach' || to.path === '/event'
       || to.path === '/search-coach' || to.path === '/redirect'
-      || to.path === '/redirect-event') {
+      || to.path === '/redirect-event' || to.path === '/redirect-password'
+      || to.path === '/reset-password' || to.path === '/reset-password-email') {
       return next()
     }
     next('/landing')
