@@ -32,7 +32,7 @@ export default {
     savePasswordToken() {
       const token = /token=(.*)/.exec(window.location.search)
       localStorage.setItem('password-token', token[1])
-      this.$router.push('/reset-password-authenticate')
+      this.$router.push('/reset-password')
     }
   }
 }

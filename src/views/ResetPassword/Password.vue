@@ -22,6 +22,7 @@
                         :invalid-feedback="errors[0]"
                       >
                         <b-form-input
+                          type="password"
                           v-model="password"
                           placeholder="Put your new password here"
                           class="p-3"
@@ -56,15 +57,34 @@
 </template>
 
 <script>
+import api from '@/api'
+
 export default {
   data() {
     return {
       isProgress: false,
+      resetPassToken: localStorage.getItem('password-token'),
       password: ''
     }
   },
   methods: {
-    resetPassword() {}
+    async resetPassword() {
+      try {
+        this.isProgress = true
+        await api.resetPassword.password({ password: this.password, token: this.resetPassToken })
+        this.isProgress = false
+        this.$bvToast.toast('Password successfully updated', {
+          title: 'Update Password Success',
+          variant: 'success'
+        })
+        setTimeout(() => { this.$router.push('/login') }, 1500)
+      } catch ({ response }) {
+        this.$bvToast.toast(response.data.meta.message, {
+          title: 'Update Password Failed',
+          variant: 'danger'
+        })
+      }
+    }
   }
 }
 </script>

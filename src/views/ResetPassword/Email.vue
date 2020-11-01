@@ -59,6 +59,8 @@
 <script>
 import TopBar from '@/components/LandingTopBar/LandingTopBar'
 
+import api from '@/api'
+
 export default {
   components: {
     TopBar
@@ -66,11 +68,28 @@ export default {
   data() {
     return {
       isProgress: false,
-      email: ''
+      email: '',
+      callbackUrl: `${process.env.VUE_APP_CALLBACK_RESET_PASSWORD_URL}`
     }
   },
   methods: {
-    resetPassword() {}
+    async resetPassword() {
+      try {
+        this.isProgress = true
+        await api.resetPassword.email({ email: this.email, callback_url: this.callbackUrl })
+        this.isProgress = false
+        this.$bvToast.toast('Please check your email', {
+          title: 'Email Has Been Sent',
+          variant: 'success'
+        })
+        setTimeout(() => { this.$router.push('/landing') }, 1500)
+      } catch ({ response }) {
+        this.$bvToast.toast(response.data.meta.message, {
+          title: 'Reset Password Failed',
+          variant: 'danger'
+        })
+      }
+    }
   }
 };
 </script>

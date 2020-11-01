@@ -55,5 +55,9 @@ export default {
   },
   feedback: {
     post: params => request.post('/feedbacks', params)
+  },
+  resetPassword: {
+    email: params => request.post('/forgot-password', params),
+    password: params => request.post('/reset-password', params)
   }
 }
